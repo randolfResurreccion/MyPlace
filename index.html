@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Homepage</title>
+    <link rel="reset" href="reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="pull-left">
+            <h1 class="headerName"></h1>
+            <p class="headerLocation"></p>
+        </div>
+        <div class="pull-right">
+            <h3 class="text-right date"></h3>
+            <p class="text-right time"></p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="container">
+        <div class="modal-outer">
+            <div class="modal-inner">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                        <label for="modalName">Full Name:</label>
+                        <input type="text" class="form-control" id="modalName">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalLoc">Location:</label>
+                        <input type="text" class="form-control" id="modalLoc">
+                    </div>
+                    <button type="submit" class="btn btn-default modalBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">  
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">National News</h3>
+                    </div>
+                    <div class="panel-body nat-news-pan">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Local News</h3>
+                    </div>
+                    <div class="panel-body loc-news-pan">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title weatherPan">Weather</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
