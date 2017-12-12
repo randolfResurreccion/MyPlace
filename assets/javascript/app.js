@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(".modalBtn").click(function (event) {
 
         event.preventDefault();
- $(".modal-outer").fadeIn(1000);
+        $(".modal-outer").fadeIn(1000);
         $(".modal-outer").hide(750);
         $(".panel").show(750);
 
@@ -28,11 +28,13 @@ $(document).ready(function () {
         var cleanEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
-
+        weather.call(loc);
         $(".headerName").text("Welcome, " + name);
-        $(".headerLocation").text(loc);
+        // $(".headerLocation").text(loc);
         $(".date").text(currentDate);
         $(".time").text(currentTime);
+
+
 
         var user = {
             name: name,
@@ -51,8 +53,8 @@ $(document).ready(function () {
     // database.ref().on("value", function(snapshot) {
     //     console.log(snapshot.val());
 
-        // $(".headerName").text(snapshot.val(name));
-        // $(".headerLocation").text(snapshot.val(loc));
+    // $(".headerName").text(snapshot.val(name));
+    // $(".headerLocation").text(snapshot.val(loc));
 
     // })
 });
