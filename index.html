@@ -20,13 +20,15 @@
 
     <!-- Moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script src="app.js"></script>
+    
 
     <!-- LOCAL LINKS -->
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- JS -->
-    <script type="text/javascript" src="assets/javascript/weather-0.js"></script>
+    <script src="assets/javascript/app.js"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/weather-0.js"></script> -->
+    <script type="text/javascript" src="assets/javascript/news.js"></script>
 
 
 </head>
@@ -46,7 +48,7 @@
     <div class="container">
         <div class="modal-outer">
             <div class="modal-inner">
-                <form action="/action_page.php">
+                <form>
                     <div class="form-group">
                         <label for="modalName">Full Name:</label>
                         <input type="text" class="form-control" id="modalName">
@@ -55,7 +57,7 @@
                         <label for="modalLoc">Location:</label>
                         <input type="text" class="form-control" id="modalLoc">
                     </div>
-                    <button type="submit" class="btn btn-default modalBtn">Submit</button>
+                    <button type="submit" class="btn btn-default modalBtn" id = "submit">Submit</button>
                 </form>
             </div>
         </div>
@@ -66,7 +68,7 @@
                         <h3 class="panel-title">National News</h3>
                     </div>
                     <div class="panel-body nat-news-pan">
-                        Panel content
+                       
                     </div>
                 </div>
             </div>
@@ -76,7 +78,7 @@
                         <h3 class="panel-title">Local News</h3>
                     </div>
                     <div class="panel-body loc-news-pan">
-                        Panel content
+                        
                     </div>
                 </div>
             </div>
@@ -86,7 +88,7 @@
                         <h3 class="panel-title weatherPan">Weather</h3>
                     </div>
                     <div class="panel-body" id="weather-panel">
-                        Panel content
+                        
                     </div>
                 </div>
             </div>
@@ -95,5 +97,3 @@
 </body>
 
 </html>
-
-<!-- double test -->
