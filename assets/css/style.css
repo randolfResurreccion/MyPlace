@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(125, 172, 211);
+}
+
+.modal-outer {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.modal-inner {
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 25px;
+}
+
+/* .modal-outer2 {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.modal-inner2 {
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 25px;
+} */
+
+.page-header {
+    background-color: rgb(175, 183, 189);
+    color: black;
+    margin-top: 0;
+}
+
+.pull-left {
+    margin-left: 25px;
+}
+
+.pull-right {
+    margin-top: 10px;
+    margin-right: 25px;
+}
+
+.panel {
+    display: none;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    height: 20px;
+}
