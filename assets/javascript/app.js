@@ -1,3 +1,7 @@
+
+
+// })
+
 var config = {
     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
     authDomain: "homepage-project-64ca7.firebaseapp.com",
@@ -58,16 +62,19 @@ $(document).ready(function () {
         $(".modal-outer").hide(750);
         $(".panel").show(750);
 
-        var name = $("#modalName").val().trim();
-        var loc = $("#modalLoc").val().trim();
-        var email = $("#modalEmail").val().trim();
+        var name = $("#modalName").val();
+        var loc = $("#modalLoc").val();
+        var email = $("#modalEmail").val();
         var cleanEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
 
         $(".headerName").text("Welcome, " + name);
+        $(".headerLocation").text(loc);
         $(".date").text(currentDate);
         $(".time").text(currentTime);
+
+        weather.call(loc);
 
         var user = {
             name: name,
