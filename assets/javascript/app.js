@@ -9,12 +9,52 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+
 $(document).ready(function () {
-    $(".modal-outer").fadeIn(1000);
+    $(".modal-outer-username").fadeIn(750);
+
+    $(".usernameNeed").click(function(event) {
+
+        event.preventDefault();
+
+        $(".modal-outer-username").hide();
+        $(".modal-inner-username").hide();
+        $(".modal-outer").slideToggle(750);
+        $(".modal-inner").slideToggle(750);
+
+    });
+
+    $(".usernameSubmit").click(function(event) {
+
+        event.preventDefault();
+
+        $(".modal-outer-username").fadeOut(1000);
+        $(".panel").show(750);
+        
+        var unEmail = $("#usernameEmail").val().trim();
+        var cleanUnEmail = unEmail.replace(".", ",");
+
+        database.ref().child(cleanUnEmail).on("value", function(snapshot) {
+            console.log(snapshot.val());
+            var userName = snapshot.val().name;
+            console.log(userName);
+            var userLoc = snapshot.val().loc;
+            console.log(userLoc);
+            var currentDate = moment().format("MMMM DD, YYYY");
+            var currentTime = moment().format("hh:mm a");
+
+            $(".headerName").text("Welcome, " + userName);
+            $(".date").text(currentDate);
+            $(".time").text(currentTime);
+
+        });
+    });
+
     $(".modalBtn").click(function (event) {
 
         event.preventDefault();
- $(".modal-outer").fadeIn(1000);
+
+        $(".modal-outer").fadeIn(1000);
         $(".modal-outer").hide(750);
         $(".panel").show(750);
 
@@ -40,14 +80,5 @@ $(document).ready(function () {
             name: name,
             loc: loc
         })
-
     });
-
-    database.ref().on("value", function(snapshot) {
-        console.log(snapshot.val());
-
-        $(".headerName").text(snapshot.val(name));
-        $(".headerLocation").text(snapshot.val(loc));
-
-    })
 });
