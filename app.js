@@ -1,10 +1,10 @@
-$(window).on("load", function() {
+// $(window).on("load", function () {
+
+// })
+
+$(document).ready(function () {
     $(".modal-outer").fadeIn(1000);
-})
-
-$(document).ready(function() {
-
-    $(".modalBtn").click(function(event) {
+    $(".modalBtn").click(function (event) {
 
         event.preventDefault();
 
