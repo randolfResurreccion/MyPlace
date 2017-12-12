@@ -1,6 +1,4 @@
-// $(window).on("load", function () {
 
-// })
 
 $(document).ready(function () {
     $(".modal-outer").fadeIn(1000);
