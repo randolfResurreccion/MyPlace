@@ -21,7 +21,7 @@ weather = {
             let hpa = response.main.pressure;
             console.log(response);
             console.log(winddeg);
-            $("#headerLocation").text("Weather in " + response.name);
+            $(".headerLocation").append("<h3>" + response.name + "</h3>");
             $("#weather-title").text("Weather in " + response.name);
             $("#weather-stats").append(
                 "<div class='row'>" +
