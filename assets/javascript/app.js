@@ -1,7 +1,3 @@
-
-
-// })
-
 var config = {
     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
     authDomain: "homepage-project-64ca7.firebaseapp.com",
@@ -22,15 +18,18 @@ $(document).ready(function () {
         $(".modal-outer").hide(750);
         $(".panel").show(750);
 
-        var name = $("#modalName").val();
-        var loc = $("#modalLoc").val();
-        var email = $("#modalEmail").val();
+        var name = $("#modalName").val().trim();
+        var loc = $("#modalLoc").val().trim();
+        var email = $("#modalEmail").val().trim();
         var cleanEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
         weather.call(loc);
         $(".headerName").text("Welcome, " + name);
+<<<<<<< HEAD
         // $(".headerLocation").text(loc);
+=======
+>>>>>>> e4fcd946a312b94f195648677fa2437ce8f68179
         $(".date").text(currentDate);
         $(".time").text(currentTime);
 
@@ -50,11 +49,16 @@ $(document).ready(function () {
 
     });
 
-    // database.ref().on("value", function(snapshot) {
-    //     console.log(snapshot.val());
+    database.ref().on("value", function(snapshot) {
+        console.log(snapshot.val());
 
+<<<<<<< HEAD
     // $(".headerName").text(snapshot.val(name));
     // $(".headerLocation").text(snapshot.val(loc));
+=======
+        $(".headerName").text(snapshot.val(name));
+        $(".headerLocation").text(snapshot.val(loc));
+>>>>>>> e4fcd946a312b94f195648677fa2437ce8f68179
 
-    // })
+    })
 });
