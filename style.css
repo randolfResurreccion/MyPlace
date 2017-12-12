@@ -64,3 +64,11 @@ body {
 .panel {
     display: none;
 }
+
+table {
+    width: 100%;
+}
+
+tr {
+    height: 20px;
+}

@@ -1,8 +1,7 @@
-$(window).on("load", function() {
-    $(".modal-outer").fadeIn(1000);
-});
 
-// Initialize Firebase
+
+// })
+
 var config = {
     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
     authDomain: "homepage-project-64ca7.firebaseapp.com",
@@ -14,13 +13,12 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
-$(document).ready(function() {
-
-    $(".modalBtn").click(function(event) {
+$(document).ready(function () {
+    $(".modal-outer").fadeIn(1000);
+    $(".modalBtn").click(function (event) {
 
         event.preventDefault();
-
+ $(".modal-outer").fadeIn(1000);
         $(".modal-outer").hide(750);
         $(".panel").show(750);
 
