@@ -18,7 +18,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 
-    <!-- Moment.js -->
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="app.js"></script>
 
@@ -48,6 +49,10 @@
             <div class="modal-inner">
                 <form action="/action_page.php">
                     <div class="form-group">
+                            <label for="modalEmail">E-mail:</label>
+                            <input type="email" class="form-control" id="modalEmail">
+                        </div>
+                    <div class="form-group">
                         <label for="modalName">Full Name:</label>
                         <input type="text" class="form-control" id="modalName">
                     </div>
@@ -55,6 +60,7 @@
                         <label for="modalLoc">Location:</label>
                         <input type="text" class="form-control" id="modalLoc">
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-default modalBtn">Submit</button>
                 </form>
             </div>
@@ -98,4 +104,3 @@
 
 </html>
 
-<!-- double test -->
