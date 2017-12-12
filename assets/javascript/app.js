@@ -72,7 +72,6 @@ $(document).ready(function () {
         var currentTime = moment().format("hh:mm a");
 
         $(".headerName").text("Welcome, " + name);
-        $(".headerLocation").text(loc);
         $(".date").text(currentDate);
         $(".time").text(currentTime);
 
