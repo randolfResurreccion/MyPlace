@@ -8,8 +8,30 @@ weather = {
         $.ajax({
             url: Url + search + key,
             method: "GET"
-        }).done(function(response){
+        }).done(function (response) {
+
+            let temp = response.main.temp;
+            let high = response.main.temp_max;
+            let low = response.main.temp_min;
+            let main = response.weather[0].main;
+            let cloudCover = response.clouds.all;
+            let wind = response.wind.speed;
+            let winddeg = response.wind.speed.deg;
             console.log(response);
+            console.log(winddeg);
+            $("#weather-title").text("Weather in " + response.name)
+            $("#weather-stats").append(
+                "<tr>" +
+                "<td>Current Temp: " + temp + "</td>" +
+                "<td>High: " + high + "</td>" +
+                "<td>Low: " + low + "</td>" +
+                "</tr>" + "<tr></tr>" +
+                "<tr>" +
+                "<td>Conditions: " + main + "</td>" +
+                "<td>Cloud Cover: " + cloudCover + "%</td>" +
+                "<td>Wind Speed: " + wind + " m/sec</td>" +
+                "</tr>"
+            )
         })
     }
 }
