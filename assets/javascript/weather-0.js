@@ -10,9 +10,9 @@ weather = {
             method: "GET"
         }).done(function (response) {
 
-            let temp = Math.round(9/5 * (response.main.temp - 273) + 32);
-            let high = Math.round(9/5 * (response.main.temp_max - 273) + 32);
-            let low = Math.round(9/5 * (response.main.temp_min - 273) + 32);
+            let temp = Math.round(9 / 5 * (response.main.temp - 273) + 32);
+            let high = Math.round(9 / 5 * (response.main.temp_max - 273) + 32);
+            let low = Math.round(9 / 5 * (response.main.temp_min - 273) + 32);
             let main = response.weather[0].main;
             let cloudCover = response.clouds.all;
             let wind = response.wind.speed;
@@ -21,7 +21,8 @@ weather = {
             let hpa = response.main.pressure;
             console.log(response);
             console.log(winddeg);
-            $("#weather-title").text("Weather in " + response.name)
+            $(".headerLocation").append("<h3>" + response.name + "</h3>");
+            $("#weather-title").text("Weather in " + response.name);
             $("#weather-stats").append(
                 "<div class='row'>" +
                 "<div class='col-xs-4'>Current Temp: " + temp + "</div>" +
@@ -29,7 +30,7 @@ weather = {
                 "<div class='col-xs-4'>Low: " + low + "</div>" +
                 "</div>" +
 
-                "<div class='row'>" + 
+                "<div class='row'>" +
                 "<div class='col-xs-4'>Conditions: " + main + "</div>" +
                 "<div class='col-xs-4'>Cloud Cover: " + cloudCover + "%</div>" +
                 "<div class='col-xs-4'>Wind Speed: " + wind + " m/sec</div>" +

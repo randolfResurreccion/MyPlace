@@ -17,7 +17,7 @@ var database = firebase.database();
 $(document).ready(function () {
     $(".modal-outer-username").fadeIn(750);
 
-    $(".usernameNeed").click(function(event) {
+    $(".usernameNeed").click(function (event) {
 
         event.preventDefault();
 
@@ -28,17 +28,19 @@ $(document).ready(function () {
 
     });
 
-    $(".usernameSubmit").click(function(event) {
+    $(".usernameSubmit").click(function (event) {
 
         event.preventDefault();
 
         $(".modal-outer-username").fadeOut(1000);
         $(".panel").show(750);
-        
+
         var unEmail = $("#usernameEmail").val().trim();
         var cleanUnEmail = unEmail.replace(".", ",");
 
-        database.ref().child(cleanUnEmail).on("value", function(snapshot) {
+
+
+        database.ref().child(cleanUnEmail).on("value", function (snapshot) {
             console.log(snapshot.val());
             var userName = snapshot.val().name;
             console.log(userName);
@@ -46,7 +48,7 @@ $(document).ready(function () {
             console.log(userLoc);
             var currentDate = moment().format("MMMM DD, YYYY");
             var currentTime = moment().format("hh:mm a");
-
+            weather.call(userLoc);
             $(".headerName").text("Welcome, " + userName);
             $(".date").text(currentDate);
             $(".time").text(currentTime);
