@@ -34,6 +34,8 @@ $(document).ready(function () {
         $(".date").text(currentDate);
         $(".time").text(currentTime);
 
+        weather.call(loc);
+
         var user = {
             name: name,
             loc: loc,
