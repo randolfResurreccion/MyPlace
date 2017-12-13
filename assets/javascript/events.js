@@ -8,18 +8,14 @@ function events(x) {
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-        console.log(response);
+
         var events = response.events;
 
         for (var i = 0; i < 5; i++) {
             var shortTitle = response.events[i].short_title;
-            console.log(shortTitle);
             var url = response.events[i].url;
-            console.log(url);
             var venue = response.events[i].venue.name;
-            console.log(venue);
             var date = moment(response.events[i].datetime_local).format("MMMM Do, h:mm a");
-            console.log(date);
 
             var eventDiv = $("<div>");
             eventDiv.addClass('event');
