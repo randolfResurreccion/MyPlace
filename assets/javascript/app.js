@@ -51,8 +51,10 @@ $(document).ready(function () {
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
                 var currentTime = moment().format("hh:mm a");
+                // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
+                getNews();
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
                 $(".time").text(currentTime);
