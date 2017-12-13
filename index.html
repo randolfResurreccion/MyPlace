@@ -54,8 +54,8 @@
         <div class="modal-outer-username">
             <div class="modal-inner-username">
                 <form action="/action_page.php">
-                    <div class="form-group">
-                        <label for="usernameEmail">Username (E-mail):</label>
+                    <div id="unDiv" class="form-group">
+                        <label id="labelError" for="usernameEmail">Username (E-mail): </label>
                         <input type="email" class="form-control" id="usernameEmail">
                     </div>
                     <br>
@@ -67,16 +67,16 @@
         <div class="modal-outer">
             <div class="modal-inner">
                 <form action="/action_page.php">
-                    <div class="form-group">
-                        <label for="modalEmail">E-mail:</label>
-                        <input type="email" class="form-control" id="modalEmail">
-                    </div>
-                    <div class="form-group">
-                        <label for="modalName">Full Name:</label>
+                    <div id="newEmailDiv" class="form-group">
+                            <label id="newEmailLabel" for="modalEmail">E-mail: </label>
+                            <input type="email" class="form-control" id="modalEmail">
+                        </div>
+                    <div id="newNameDiv" class="form-group">
+                        <label id="newNameLabel" for="modalName">Full Name: </label>
                         <input type="text" class="form-control" id="modalName">
                     </div>
-                    <div class="form-group">
-                        <label for="modalLoc">Location:</label>
+                    <div id="newLocDiv" class="form-group">
+                        <label id="newLocLabel" for="modalLoc">Zipcode: </label>
                         <input type="text" class="form-control" id="modalLoc">
                     </div>
                     <br>
@@ -114,20 +114,14 @@
                     </div>
                     <div class="panel-body" id="weather-stats">
 
-                        <div class="panel panel-default">
-                            <div class="panel-body" id="w-0">
-                                
-                            </div>
+                        <div class="row">
+                            <div class="col-xs-6" id="w-icon"></div>
+                            <div class="col-xs-6" id="w-aside"></div>
+
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body" id="w-0">
-                                Basic panel example
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body" id="w-0">
-                                Basic panel example
-                            </div>
+                        <div class="row">
+                            <div id="col-sm-7" id="w-main"></div>
+                            <div id="col-sm-4" id="w-lower"></div>
                         </div>
 
                     </div>
