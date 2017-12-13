@@ -25,7 +25,7 @@ weather = {
             wIcon = $("<img>");
             wIcon.attr("src", icon);
             $("#w-icon").append(wIcon);
-            $("#w-aside").append("<h2>" + temp + "</h2>");
+            $("#w-aside").append("<h1>" + temp + "</h1>");
 
 
 
