@@ -13,19 +13,17 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- JQ LINK -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-<<<<<<< HEAD
 
-    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-
-=======
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
     <!-- Moment.js -->
->>>>>>> 7f8f7053a876d46bdd2f799f77a81b8e7f639600
+
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="assets/javascript/app.js"></script>
 
@@ -90,7 +88,10 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">National News</h3>
+                        <h3 class="panel-title">
+                            <strong>
+                                <i class="fa fa-newspaper-o"></i> Trending News</strong>
+                        </h3>
                     </div>
                     <div class="panel-body nat-news-pan">
                     </div>
@@ -111,14 +112,17 @@
                         <h3 class="panel-title weatherPan" id="weather-title">Weather</h3>
                     </div>
                     <div class="panel-body" id="weather-stats">
+
                         <div class="row">
                             <div class="col-xs-6" id="w-icon"></div>
                             <div class="col-xs-6" id="w-aside"></div>
+
                         </div>
                         <div class="row">
                             <div id="col-sm-7" id="w-main"></div>
                             <div id="col-sm-4" id="w-lower"></div>
                         </div>
+
                     </div>
 
                 </div>
