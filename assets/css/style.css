@@ -74,6 +74,31 @@ tr {
     height: 20px;
 }
 
-#weather-stats {
-    text-align: center;
+
+
+/* styling for news panel content */
+
+.article {
+    background: rgb(207, 205, 205);
+    color: rgb(4, 4, 70);
+    padding:10px;
+    margin:5px;
+}
+
+a:link {
+    text-decoration: none;
+   
+}
+
+a:visited {
+    text-decoration: none;
+
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
 }
