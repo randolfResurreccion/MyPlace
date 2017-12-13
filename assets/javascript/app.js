@@ -77,6 +77,7 @@ $(document).ready(function () {
         $(".time").text(currentTime);
 
         weather.call(loc);
+        events(loc);
 
         var user = {
             name: name,
