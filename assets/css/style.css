@@ -78,7 +78,7 @@ tr {
 
 /* styling for news panel content */
 
-.article {
+.article, .event {
     background: rgb(207, 205, 205);
     color: rgb(4, 4, 70);
     padding:10px;

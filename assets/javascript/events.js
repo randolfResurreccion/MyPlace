@@ -14,6 +14,34 @@ function events(x) {
         for (var i = 0; i < events.length; i++) {
             var shortTitle = response.events[i].short_title;
             console.log(shortTitle);
+            var url = response.events[i].url;
+            console.log(url);
+            var venue = response.events[i].venue.name;
+            console.log(venue);
+            var date = moment(response.events[i].datetime_local).format("MMMM Do, h:mm a");
+            console.log(date);
+
+            var eventDiv = $("<div>");
+            eventDiv.addClass('event');
+            var ptag = $("<p>");
+            ptag.addClass("title-link");
+            var atag = $("<a></a>");
+            atag.attr("href", url);
+            atag.attr("target", "_blank");
+            var pVenue = $("<p>");
+            pVenue.addClass("venue");
+            var pDate = $("<p>");
+            pDate.addClass("event-date");
+
+            atag.text(shortTitle);
+            ptag.append(atag);
+            pVenue.text("Where: " + venue);
+            pDate.text("When: " + date);
+            eventDiv.append(ptag)
+            eventDiv.append(pVenue);
+            eventDiv.append(pDate);
+            $(".events-pan").append(eventDiv);
+            
         }
 
 
