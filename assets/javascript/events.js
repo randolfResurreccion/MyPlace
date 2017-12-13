@@ -9,7 +9,7 @@ function events(x) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).done(function (response) {
+    }).done(function(response) {
         console.log(response);
         var events = response.events;
 
