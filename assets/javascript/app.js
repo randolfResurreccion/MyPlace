@@ -49,6 +49,7 @@ $(document).ready(function () {
             var currentDate = moment().format("MMMM DD, YYYY");
             var currentTime = moment().format("hh:mm a");
             weather.call(userLoc);
+            events(userLoc);
             $(".headerName").text("Welcome, " + userName);
             $(".date").text(currentDate);
             $(".time").text(currentTime);
@@ -76,6 +77,7 @@ $(document).ready(function () {
         $(".time").text(currentTime);
 
         weather.call(loc);
+        events(loc);
 
         var user = {
             name: name,

@@ -25,15 +25,22 @@ weather = {
             $("#weather-title").text("Weather in " + response.name);
             $("#weather-stats").append(
                 "<div class='row'>" +
-                "<div class='col-xs-4'>Current Temp: " + temp + "</div>" +
-                "<div class='col-xs-4'>High: " + high + "</div>" +
-                "<div class='col-xs-4'>Low: " + low + "</div>" +
+                "<div class='col-xs-3'></div>" +
+                "<div class='col-xs-6'>Current Temp: " + temp + "</div>" +
+                "<div class='col-xs-3'></div>" +
                 "</div>" +
 
+
                 "<div class='row'>" +
-                "<div class='col-xs-4'>Conditions: " + main + "</div>" +
-                "<div class='col-xs-4'>Cloud Cover: " + cloudCover + "%</div>" +
+                "<div class='col-xs-3'></div>" +
+                "<div class='col-xs-3'>High: " + high + "</div>" +
+                "<div class='col-xs-3'>Low: " + low + "</div>" +
+                "<div class='col-xs-3'></div>" +
+                "</div>" +
+
                 "<div class='col-xs-4'>Wind Speed: " + wind + " m/sec</div>" +
+                "<div class='col-xs-4'>Cloud Cover: " + cloudCover + "%</div>" +
+                "<div class='col-xs-6'>Conditions: " + main + "</div>" +
                 "</div>" +
 
                 "<div class='row'>" +
