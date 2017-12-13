@@ -1,5 +1,5 @@
+// Using openweathermap API to display weather report based on user's location
 
-console.log("test");
 weather = {
     call: (target) => {
         let Url = "https://api.openweathermap.org/data/2.5/weather?zip=";
