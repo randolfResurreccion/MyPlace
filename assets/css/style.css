@@ -73,3 +73,7 @@ table {
 tr {
     height: 20px;
 }
+
+#weather-stats {
+    text-align: center;
+}
