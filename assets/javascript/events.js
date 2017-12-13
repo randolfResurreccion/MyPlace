@@ -11,7 +11,7 @@ function events(x) {
         console.log(response);
         var events = response.events;
 
-        for (var i = 0; i < events.length; i++) {
+        for (var i = 0; i < 5; i++) {
             var shortTitle = response.events[i].short_title;
             console.log(shortTitle);
             var url = response.events[i].url;
