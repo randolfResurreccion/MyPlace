@@ -30,29 +30,29 @@ weather = {
                 // "<div class='col-xs-3'></div>" +
                 // "</div></div>" +
 
-                 "<div class='panel panel-default' id='temp-pan'><div class='panel-body'>" +
-                temp  +
+                //  "<div class='panel panel-default' id='temp-pan'><div class='panel-body'>" +
+                // temp  +
                 
-                "</div></div>" +
+                // "</div></div>" +
 
 
-                "<div class='row'>" +
-                "<div class='col-xs-3'></div>" +
-                "<div class='col-xs-3'>High: " + high + "</div>" +
-                "<div class='col-xs-3'>Low: " + low + "</div>" +
-                "<div class='col-xs-3'></div>" +
-                "</div>" +
+                // "<div class='row'>" +
+                // "<div class='col-xs-3'></div>" +
+                // "<div class='col-xs-3'>High: " + high + "</div>" +
+                // "<div class='col-xs-3'>Low: " + low + "</div>" +
+                // "<div class='col-xs-3'></div>" +
+                // "</div>" +
 
-                "<div class='row'>" +
-                "<div class='col-xs-4'>Wind Speed: " + wind + " m/sec</div>" +
-                "<div class='col-xs-4'>Cloud Cover: " + cloudCover + "%</div>" +
-                "<div class='col-xs-6'>Conditions: " + main + "</div>" +
-                "</div>" +
+                // "<div class='row'>" +
+                // "<div class='col-xs-4'>Wind Speed: " + wind + " m/sec</div>" +
+                // "<div class='col-xs-4'>Cloud Cover: " + cloudCover + "%</div>" +
+                // "<div class='col-xs-6'>Conditions: " + main + "</div>" +
+                // "</div>" +
 
-                "<div class='row'>" +
-                "<div class='col-xs-4'>Humidity: " + hum + "%</div>" +
-                "<div class='col-xs-4'>Pressure: " + hpa + " hPa (Sea)</div>" +
-                "</div>"
+                // "<div class='row'>" +
+                // "<div class='col-xs-4'>Humidity: " + hum + "%</div>" +
+                // "<div class='col-xs-4'>Pressure: " + hpa + " hPa (Sea)</div>" +
+                // "</div>"
             )
         })
     }
