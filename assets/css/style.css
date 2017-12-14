@@ -1,7 +1,14 @@
-/* * {
+#weather-stats {
     max-height: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+}
+
+#w-pan {
+    background-image: url("../images/radar.jpg");
     max-width: 100%;
-} */
+}
 
 body {
     margin: 0;
@@ -52,7 +59,7 @@ body {
     padding: 25px;
 }
 
-.page-header {
+#header-custom {
     background-color: rgb(175, 183, 189);
     color: black;
     margin-top: 0;
