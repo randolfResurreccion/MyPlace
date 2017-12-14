@@ -23,7 +23,7 @@ function events(x) {
 
             // create html elements to display data
             var eventDiv = $("<div>");
-            eventDiv.addClass('event');
+            eventDiv.addClass('well');
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");

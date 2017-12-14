@@ -23,10 +23,10 @@ weather = {
             // get wind info and convert 
             let wind = Math.round(response.wind.speed * 2.2369);
             let deg = response.wind.deg;
+            console.log(response);
 
             // gets other weather data
             let main = response.weather[0].main;
-            let cloudCover = response.clouds.all;
             let hum = response.main.humidity;
             let hpa = response.main.pressure;
 
@@ -41,10 +41,14 @@ weather = {
 
             // get and update html with weather data
             $(".headerLocation").append("<div>" + response.name + "</div>");
-            $("#weather-title").append("Weather in " + response.name);
+            $("#weather-title").append("Weather in " + response.name + " - " + main);
             $("#w-aside").prepend("<div class='col-xs-12'><h1 id='temp-display'>" + temp + "&deg;" + "</h1></div>");
             $("#w-article").append("<div class='col-xs-6'><h4>" + high + "</h4></div>" + "<div class='col-xs-6'><h4>" + low + "</h4></div>");
-            $("#w-speed").html("<h4> Wind " + wind + " m/s at " + deg + "&deg;</h4>");
+            if (deg) {
+                $("#w-speed").html("<h4> Wind " + wind + " m/s at " + deg + "&deg;</h4>");
+            } else {
+                $("#w-speed").html("<h4> Wind " + wind + " m/s</h4>");
+            }
             $("#hum").html("<h4>" + hum + "% Humidity</h4>");
             $("#hpa").html("<h4>" + hpa + "hpa</h4>");
         })

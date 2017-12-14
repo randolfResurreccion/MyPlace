@@ -23,7 +23,7 @@ function getNews() {
 
             //create elements for news data
             var articleDiv = $("<div>");
-            articleDiv.addClass('article');
+            articleDiv.addClass('well');
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
