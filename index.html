@@ -110,27 +110,49 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title weatherPan" id="weather-title">Weather</h3>
-                    </div>
-                    <div class="panel-body" id="weather-stats">
-
-                        <div class="row">
-                            <div class="col-xs-6" id="w-icon"></div>
-                            <div class="col-xs-6" id="w-aside"></div>
-
+                    <div class="panel panel-default" id="w-pan">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <strong id="weather-title">
+                                    <i class="glyphicon glyphicon-cloud"></i>
+                                </strong>
+                            </h3>
                         </div>
-                        <div class="row">
-                            <div id="col-sm-7" id="w-main"></div>
-                            <div id="col-sm-4" id="w-lower"></div>
+                        <div class="panel-body" id="weather-stats">
+    
+                            <div class="row">
+                                <div class="col-xs-6" id="w-icon"></div>
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-5" id="w-aside">
+                                    <div id="w-article">
+    
+                                    </div>
+                                </div>
+    
+    
+                            </div>
+                            <div class="row">
+                                <div id="col-sm-7" id="w-main"></div>
+                                <div id="col-sm-4" id="w-lower"></div>
+                            </div>
+    
+                            <div class="well well-lg">
+                                <div class="row">
+                                    <div class="col-sm-12" id="w-speed"></div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-sm-6" id="hum"></div>
+                                    <div class="col-sm-6" id="hpa"></div>
+                                </div>
+                            </div>
                         </div>
-
+    
                     </div>
-
                 </div>
             </div>
         </div>
+
         <!-- <div class="row">
             <div class="col-md-12 map-div">
                 <div id="map" style="visibility:hidden"></div>
