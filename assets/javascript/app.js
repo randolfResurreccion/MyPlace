@@ -45,20 +45,14 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-<<<<<<< HEAD
-=======
-          
->>>>>>> master
+
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
                 var currentTime = moment().format("hh:mm a");
-<<<<<<< HEAD
-=======
               
->>>>>>> master
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
