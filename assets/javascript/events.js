@@ -24,11 +24,7 @@ function events(x) {
 
             // create html elements to display data
             var eventDiv = $("<div>");
-<<<<<<< HEAD
-            eventDiv.addClass('event event-' + id);
-=======
             eventDiv.addClass('well');
->>>>>>> master
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
