@@ -23,8 +23,11 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
     <!-- Moment.js -->
-
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCukEN2AlPAsJeZZ5cULDFFGFv5J4dsXS0&callback=initMap">
+    </script> -->
+
     <script src="assets/javascript/app.js"></script>
 
     <!-- LOCAL LINKS -->
@@ -34,7 +37,7 @@
     <script type="text/javascript" src="assets/javascript/weather-0.js"></script>
     <script type="text/javascript" src="assets/javascript/events.js"></script>
     <script type="text/javascript" src="assets/javascript/news.js"></script>
-
+    <!-- <script type="text/javascript" src="assets/javascript/traffic.js"></script> -->
 
 </head>
 
@@ -68,9 +71,9 @@
             <div class="modal-inner">
                 <form action="/action_page.php">
                     <div id="newEmailDiv" class="form-group">
-                            <label id="newEmailLabel" for="modalEmail">E-mail: </label>
-                            <input type="email" class="form-control" id="modalEmail">
-                        </div>
+                        <label id="newEmailLabel" for="modalEmail">E-mail: </label>
+                        <input type="email" class="form-control" id="modalEmail">
+                    </div>
                     <div id="newNameDiv" class="form-group">
                         <label id="newNameLabel" for="modalName">Full Name: </label>
                         <input type="text" class="form-control" id="modalName">
@@ -100,23 +103,32 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <strong><i class="fa fa-calendar" aria-hidden="true"></i>  Events near you</strong></h3>
+                        <h3 class="panel-title">Events near you</h3>
                     </div>
                     <div class="panel-body events-pan">
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="w-pan">
                     <div class="panel-heading">
-                        <h3 class="panel-title weatherPan" id="weather-title">Weather</h3>
+                        <h3 class="panel-title">
+                            <strong id="weather-title">
+                                <i class="glyphicon glyphicon-cloud"></i>
+                            </strong>
+                        </h3>
                     </div>
                     <div class="panel-body" id="weather-stats">
 
                         <div class="row">
                             <div class="col-xs-6" id="w-icon"></div>
-                            <div class="col-xs-6" id="w-aside"></div>
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-5" id="w-aside">
+                                <div id="w-article">
+
+                                </div>
+                            </div>
+
 
                         </div>
                         <div class="row">
@@ -124,11 +136,29 @@
                             <div id="col-sm-4" id="w-lower"></div>
                         </div>
 
+                        <div class="well well-lg">
+                            <div class="row">
+                                <div class="col-sm-12" id="w-speed"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6" id="hum"></div>
+                                <div class="col-sm-6" id="hpa"></div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- <div class="row">
+            <div class="col-md-12 map-div">
+                <div id="map" style="visibility:hidden"></div>
+            </div>
+        </div> -->
+    <br>
     </div>
 </body>
 

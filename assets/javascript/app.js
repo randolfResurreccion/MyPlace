@@ -45,7 +45,8 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-
+            // $("#map").attr("style", "visibility:visibile");
+          
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                 var userName = snapshot.val().name;
@@ -100,6 +101,7 @@ $(document).ready(function () {
             $(".modal-outer").fadeIn(1000);
             $(".modal-outer").hide(750);
             $(".panel").show(750);
+            $("#map").show(750);
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);

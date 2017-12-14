@@ -20,10 +20,11 @@ function events(x) {
             var url = response.events[i].url;
             var venue = response.events[i].venue.name;
             var date = moment(response.events[i].datetime_local).format("MMMM Do, h:mm a");
+            var id = response.events[i].id;
 
             // create html elements to display data
             var eventDiv = $("<div>");
-            eventDiv.addClass('event');
+            eventDiv.addClass('well');
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -46,5 +47,4 @@ function events(x) {
         }
 
     })
-
 }
