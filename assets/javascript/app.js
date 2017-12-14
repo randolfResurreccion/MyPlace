@@ -14,6 +14,13 @@ var config = {
 firebase.initializeApp(config);
 // Create a variable to reference the database
 var database = firebase.database();
+var currentDate = moment().format("MMMM DD, YYYY");
+var currentTime;
+
+function updateTime () {
+    currentTime = moment().format("hh:mm:ss a");
+    $(".time").html("<h4>" + currentTime + "</h4>");
+}
 
 $(document).ready(function () {
     $(".modal-outer-username").fadeIn(750);
@@ -45,22 +52,21 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-            // $("#map").attr("style", "visibility:visibile");
           
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
-                var currentDate = moment().format("MMMM DD, YYYY");
-                var currentTime = moment().format("hh:mm a");
               
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
                 getNews();
+                updateTime();
+                setInterval(updateTime, 1000);
+
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
-                $(".time").text(currentTime);
             });
         }
     });
@@ -105,12 +111,12 @@ $(document).ready(function () {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            $(".time").text(currentTime);
 
         // call weather, news and events to get data using API calls
         weather.call(loc);
         events(loc);
         getNews();
+        setInterval(updateTime, 1000);
         var user = {
             name: name,
             loc: loc,
@@ -125,4 +131,6 @@ $(document).ready(function () {
         });
         }
     });
+    
+
 });

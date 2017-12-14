@@ -59,7 +59,7 @@ body {
     padding: 25px;
 }
 
-#header-custom {
+.page-header {
     background-color: rgb(175, 183, 189);
     color: black;
     margin-top: 0;
@@ -76,10 +76,6 @@ body {
 
 .panel {
     display: none;
-}
-
-#map { 
-    height:400px;
 }
 
 table {
@@ -104,13 +100,6 @@ tr {
 }
 
 /* styling for news panel content */
-
-.article, .event {
-    background: rgb(230, 227, 227);
-    color: rgb(4, 4, 70);
-    padding:10px;
-    margin:5px;
-}
 
 a:link {
     text-decoration: none;
