@@ -6,6 +6,6 @@ function initMap() {
       center: {lat: 34.04924594193164, lng: -118.24104309082031}
     });
     var trafficLayer = new google.maps.TrafficLayer();
+    google.maps.event.trigger(map, 'resize');
     trafficLayer.setMap(map);
-    google.maps.event.trigger(trafficLayer, 'resize');
   }

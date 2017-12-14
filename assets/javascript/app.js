@@ -16,7 +16,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $(document).ready(function () {
-    $("#map").hide();
     $(".modal-outer-username").fadeIn(750);
 
     $(".usernameNeed").click(function (event) {
@@ -46,9 +45,7 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-            $("#map").show(750);
-            google.maps.event.trigger(trafficLayer, 'resize');
-
+            $("#map").attr("style", "visibility:visibile");
           
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {

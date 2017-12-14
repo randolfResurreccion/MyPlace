@@ -67,13 +67,12 @@ body {
     margin-right: 25px;
 }
 
-#map {
-    /* display: none; */
-    height: 450px;
-}
-
 .panel {
     display: none;
+}
+
+#map { 
+    height:400px;
 }
 
 table {
