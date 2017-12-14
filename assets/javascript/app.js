@@ -52,12 +52,22 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> master
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
+<<<<<<< HEAD
               
+=======
+                var currentDate = moment().format("MMMM DD, YYYY");
+                var currentTime = moment().format("hh:mm a");
+                // initMap(userLoc);
+>>>>>>> master
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
@@ -68,7 +78,9 @@ $(document).ready(function () {
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
             });
+
         }
+        
     });
 
     // new user data is updated in firebase after registration
@@ -107,11 +119,11 @@ $(document).ready(function () {
             $(".modal-outer").fadeIn(1000);
             $(".modal-outer").hide(750);
             $(".panel").show(750);
-            $("#map").show(750);
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
 
+<<<<<<< HEAD
         // call weather, news and events to get data using API calls
         weather.call(loc);
         events(loc);
@@ -121,16 +133,47 @@ $(document).ready(function () {
             name: name,
             loc: loc,
             email: cleanEmail
+=======
+            // call weather, news and events to get data using API calls
+            weather.call(loc);
+            events(loc);
+            getNews();
+            // initMap(loc);
+            var user = {
+                name: name,
+                loc: loc,
+                email: cleanEmail
+            }
+
+            // set user data into firebase
+            var userRef = database.ref().child(user.email);
+            userRef.set({
+                name: name,
+                loc: loc
+            });
+
+
+>>>>>>> master
         }
 
-        // set user data into firebase
-        var userRef = database.ref().child(user.email);
-        userRef.set({
-            name: name,
-            loc: loc
-        });
+    });
+
+    $(".well").click(function (event) {
+        if ($("#map-div").attr("data") == "show") {
+            $("#map-div").attr('style', "display:none");
+            $("#map-div").attr('data', "hide");
+            console.log("test");
+            initMap();
+        } else {
+            $("#map-div").attr('style', "display:show");
+            $("#map-div").attr('data', "show");
+            initMap();
         }
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     
 
 });

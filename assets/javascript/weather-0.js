@@ -29,6 +29,18 @@ weather = {
             let main = response.weather[0].main;
             let hum = response.main.humidity;
             let hpa = response.main.pressure;
+            var lat = response.coord.lat;
+            console.log(lat);
+            let latStore = $("<button>");
+            latStore.val(lat);
+            latStore.attr("id", "lat-store");
+            $(".page-header").append(latStore);
+            var lon = response.coord.lon;
+            console.log(lon);
+            let lonStore = $("<button>");
+            lonStore.val(lon);
+            lonStore.attr("id", "lon-store");
+            $(".page-header").append(lonStore);
 
             // gets the weather icon
             let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
