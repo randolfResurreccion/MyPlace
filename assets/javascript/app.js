@@ -45,7 +45,7 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-            $("#map").attr("style", "visibility:visibile");
+            // $("#map").attr("style", "visibility:visibile");
           
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
