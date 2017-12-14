@@ -8,17 +8,19 @@ function events(x) {
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-
+        
         var events = response.events;
 
         for (var i = 0; i < 5; i++) {
+    
             var shortTitle = response.events[i].short_title;
             var url = response.events[i].url;
             var venue = response.events[i].venue.name;
             var date = moment(response.events[i].datetime_local).format("MMMM Do, h:mm a");
+            var id = response.events[i].id;
 
             var eventDiv = $("<div>");
-            eventDiv.addClass('event');
+            eventDiv.addClass('event event-' + id);
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -37,10 +39,6 @@ function events(x) {
             eventDiv.append(pVenue);
             eventDiv.append(pDate);
             $(".events-pan").append(eventDiv);
-            
         }
-
-
     })
-
 }

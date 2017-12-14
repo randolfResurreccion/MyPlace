@@ -62,6 +62,11 @@ body {
     margin-right: 25px;
 }
 
+#map {
+    display: none;
+    height: 100%;
+}
+
 .panel {
     display: none;
 }

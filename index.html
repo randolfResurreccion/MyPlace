@@ -25,6 +25,9 @@
     <!-- Moment.js -->
 
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCukEN2AlPAsJeZZ5cULDFFGFv5J4dsXS0&callback=initMap">
+    </script>
     <script src="assets/javascript/app.js"></script>
 
     <!-- LOCAL LINKS -->
@@ -34,7 +37,7 @@
     <script type="text/javascript" src="assets/javascript/weather-0.js"></script>
     <script type="text/javascript" src="assets/javascript/events.js"></script>
     <script type="text/javascript" src="assets/javascript/news.js"></script>
-
+    <script type="text/javascript" src="assets/javascript/traffic.js"></script>
 
 </head>
 
@@ -128,6 +131,10 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 map-div" id="map" style="height:400px"></div>
+        </div>
+        <br>
     </div>
 </body>
 
