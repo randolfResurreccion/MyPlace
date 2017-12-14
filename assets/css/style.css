@@ -78,6 +78,10 @@ body {
     display: none;
 }
 
+#map { 
+    height:400px;
+}
+
 table {
     width: 100%;
 }
