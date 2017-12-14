@@ -31,6 +31,7 @@ function getNews() {
             atag.attr("target", "_blank");
             var pSource = $("<p>");
             pSource.addClass("news-source");
+            var divbookmark = $("<div class='bookmark' data-url="+url+"><a href='#' data-toggle='tooltip' title='Click to Bookmark'><i class='fa fa-bookmark' aria-hidden='true'></i></a>")
 
             // append data from response to appropriate elements created
             atag.text(title);
@@ -38,6 +39,7 @@ function getNews() {
             pSource.text("Source: " + source);
             articleDiv.append(ptag)
             articleDiv.append(pSource);
+            articleDiv.append(divbookmark);
             $(".nat-news-pan").append(articleDiv);
         }
     });
