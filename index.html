@@ -24,9 +24,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
     <!-- Moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCukEN2AlPAsJeZZ5cULDFFGFv5J4dsXS0&callback=initMap">
-    </script> -->
+
 
     <script src="assets/javascript/app.js"></script>
 
@@ -37,7 +35,7 @@
     <script type="text/javascript" src="assets/javascript/weather-0.js"></script>
     <script type="text/javascript" src="assets/javascript/events.js"></script>
     <script type="text/javascript" src="assets/javascript/news.js"></script>
-    <!-- <script type="text/javascript" src="assets/javascript/traffic.js"></script> -->
+    <script type="text/javascript" src="assets/javascript/traffic.js"></script>
 
 </head>
 
@@ -150,16 +148,41 @@
 
                 </div>
             </div>
+            <div class="col-md-12" id="map-div" data="show" style="display:none">
+                <div id="map"></div>
+            </div>
+
+            <script>
+                function initMap() {
+
+                    var uluru = { lat: parseFloat($("#lat-store").val()), lng: parseFloat($("#lon-store").val()) };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
+                    var trafficLayer = new google.maps.TrafficLayer();
+                    trafficLayer.setMap(map);
+
+                }
+            </script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMhlhxQP_IoFZkFWSRZw96yZMLiUIkDmU&callback=initMap">
+            </script>
         </div>
     </div>
 
-    <!-- <div class="row">
-            <div class="col-md-12 map-div">
-                <div id="map" style="visibility:hidden"></div>
-            </div>
-        </div> -->
+
+
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMhlhxQP_IoFZkFWSRZw96yZMLiUIkDmU&callback=initMap">
+    </script> -->
     <br>
     </div>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMhlhxQP_IoFZkFWSRZw96yZMLiUIkDmU&callback=initMap">
+    </script> -->
 </body>
 
 </html>
