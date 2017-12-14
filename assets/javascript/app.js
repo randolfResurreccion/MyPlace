@@ -52,22 +52,11 @@ $(document).ready(function () {
         else {
             $(".modal-outer-username").fadeOut(1000);
             $(".panel").show(750);
-<<<<<<< HEAD
-          
-=======
-
->>>>>>> master
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
-<<<<<<< HEAD
-              
-=======
-                var currentDate = moment().format("MMMM DD, YYYY");
-                var currentTime = moment().format("hh:mm a");
                 // initMap(userLoc);
->>>>>>> master
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
@@ -123,37 +112,26 @@ $(document).ready(function () {
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
 
-<<<<<<< HEAD
         // call weather, news and events to get data using API calls
         weather.call(loc);
         events(loc);
         getNews();
         setInterval(updateTime, 1000);
+        // initMap(loc);
         var user = {
             name: name,
             loc: loc,
             email: cleanEmail
-=======
-            // call weather, news and events to get data using API calls
-            weather.call(loc);
-            events(loc);
-            getNews();
-            // initMap(loc);
-            var user = {
-                name: name,
-                loc: loc,
-                email: cleanEmail
-            }
+        }
 
-            // set user data into firebase
-            var userRef = database.ref().child(user.email);
-            userRef.set({
-                name: name,
-                loc: loc
-            });
+        // set user data into firebase
+        var userRef = database.ref().child(user.email);
+        userRef.set({
+            name: name,
+            loc: loc
+        });
 
 
->>>>>>> master
         }
 
     });
@@ -170,10 +148,6 @@ $(document).ready(function () {
             initMap();
         }
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     
 
 });
