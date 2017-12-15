@@ -172,6 +172,7 @@ var app = {
             // hide the map div
             $("#map-div").attr('style', "display:none");
             $("#map-div").attr('data', "hide");
+            $("#map-panel-title").text("Map hidden, click to show");
 
             // if the map div is hidden
         } else {
@@ -179,6 +180,7 @@ var app = {
             // show the map div
             $("#map-div").attr('style', "display:show");
             $("#map-div").attr('data', "show");
+            $("#map-panel-title").text("Click to hide map");
 
             // re initialize the map
             app.initMap();
