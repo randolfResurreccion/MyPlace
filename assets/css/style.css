@@ -83,6 +83,16 @@ body {
     display: none;
 }
 
+#collapse1 {
+    display:none;
+    margin-top:-30px;
+}
+
+#collapse2 {
+    display:none;
+    margin-top: -30px;
+}
+
 #map-panel-def {
     margin-top: 10px;
 }
