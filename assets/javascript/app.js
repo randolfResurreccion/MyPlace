@@ -218,7 +218,7 @@ var app = {
     updateTime: function () {
         var currentTime;
         currentTime = moment().format("hh:mm:ss a");
-        $(".time").text(currentTime);
+        $(".time").html("<h4>" + currentTime + "</h4>");
     }
 
     
