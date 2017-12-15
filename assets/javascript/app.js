@@ -56,6 +56,7 @@ $(document).ready(function () {
                 userRef.push({
                     bookmark: itemBookmarked[1]
                 });
+                
 
             }
 });
