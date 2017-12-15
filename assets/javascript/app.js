@@ -1,43 +1,10 @@
-<<<<<<< HEAD
-// Get the user input , do required validations and save user data to firebase
-// Allows new users to register
-// Makes calls to functions in other js files to display weather, news and local events data to user
-// Initialize firebase
-// Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
-//     authDomain: "project-1-8deb1.firebaseapp.com",
-//     databaseURL: "https://project-1-8deb1.firebaseio.com",
-//     projectId: "project-1-8deb1",
-//     storageBucket: "",
-//     messagingSenderId: "880463477699"
-//   };
-//   firebase.initializeApp(config);
-
-//test with shama firebase
-// Initialize Firebase
-
-var config = {
-    apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
-    authDomain: "project-1-8deb1.firebaseapp.com",
-    databaseURL: "https://project-1-8deb1.firebaseio.com",
-    projectId: "project-1-8deb1",
-    storageBucket: "project-1-8deb1.appspot.com",
-    messagingSenderId: "880463477699"
-};
-firebase.initializeApp(config);
 var cleanUnEmail = "";
-// Create a variable to reference the database
-var database = firebase.database();
-=======
->>>>>>> master
-
 // at page load
 $(document).ready(function () {
-   
+
     // Initialize firebase
     app.initFireBase();
-
+    
     $(".modal-outer-username").fadeIn(750);
 
     $(".usernameNeed").click(function (event) {
@@ -79,7 +46,19 @@ $(document).ready(function () {
         app.toggleMap();
     });
 
+    // saving bookmarks from articles and events in firebase
+    $(document).on("click", ".bookmark", function () {
+        var dataUrl = $(this).attr("data-url");
+        var itemBookmarked = dataUrl.split(",");
+        if (itemBookmarked) {
+                // set user data into firebase
+                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
+                userRef.push({
+                    bookmark: itemBookmarked[1]
+                });
 
+            }
+});
 
 });
 
@@ -93,53 +72,20 @@ var app = {
 
         // get user input from form and store it in local variable
         var unEmail = $("#usernameEmail").val().trim();
-<<<<<<< HEAD
         cleanUnEmail = unEmail.replace(".", ",");
-=======
-        var cleanUnEmail = unEmail.replace(".", ",");
 
->>>>>>> master
         // user input email validation
         if (unEmail === "") {
 
             $("#unDiv").addClass("has-error");
             $("#labelError").append("<span class='label label-danger'>Must fill out field</span>");
             $("#labelError").attr("style", "color:rgb(156, 59, 59)");
-<<<<<<< HEAD
-        }
-        else {
-            $(".modal-outer-username").fadeOut(1000);
-            $(".panel").show(750);
-            // $("#map").attr("style", "visibility:visibile");
-
-            // retrieve data from firebase and display to user after login
-            database.ref().child(cleanUnEmail).on("value", function (snapshot) {
-                if (snapshot.val()) {
-
-                    var userName = snapshot.val().name;
-                    var userLoc = snapshot.val().loc;
-                    var currentDate = moment().format("MMMM DD, YYYY");
-                    var currentTime = moment().format("hh:mm a");
-
-                    // call weather, news and events to get data using API calls
-                    weather.call(userLoc);
-                    events(userLoc);
-                    getNews();
-                    $(".headerName").text("Welcome, " + userName);
-                    $(".date").text(currentDate);
-                    $(".time").text(currentTime);
-                }
-                else {
-                    alert("invalid email ID. Please register if you are a new user");
-                }
-
-=======
         } else {
 
 
             // retrieve data from firebase and display to user after login
-            app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
-                
+            app.database.ref().child(cleanUnEmail).once("value").then( function (snapshot) {
+
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
@@ -155,7 +101,6 @@ var app = {
 
                 $(".modal-outer-username").fadeOut(1000);
                 $(".panel").show(750);
->>>>>>> master
             });
 
         }
@@ -167,7 +112,7 @@ var app = {
         var name = $("#modalName").val();
         var loc = $("#modalLoc").val();
         var email = $("#modalEmail").val();
-        var cleanEmail = email.replace(".", ",");
+        cleanUnEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
         $(".form-group").attr("class", "form-group");
@@ -197,7 +142,7 @@ var app = {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            
+
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
@@ -209,7 +154,7 @@ var app = {
             var user = {
                 name: name,
                 loc: loc,
-                email: cleanEmail
+                email: cleanUnEmail
             }
 
             // set user data into firebase
@@ -268,15 +213,25 @@ var app = {
 
     // initializes firebase
     initFireBase: function () {
-        var config = {
-            apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-            authDomain: "homepage-project-64ca7.firebaseapp.com",
-            databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-            projectId: "homepage-project-64ca7",
-            storageBucket: "homepage-project-64ca7.appspot.com",
-            messagingSenderId: "438523083006"
-        };
+        // var config = {
+        //     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
+        //     authDomain: "homepage-project-64ca7.firebaseapp.com",
+        //     databaseURL: "https://homepage-project-64ca7.firebaseio.com",
+        //     projectId: "homepage-project-64ca7",
+        //     storageBucket: "homepage-project-64ca7.appspot.com",
+        //     messagingSenderId: "438523083006"
+        // };
 
+        // firebase.initializeApp(config);
+
+        var config = {
+            apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
+            authDomain: "project-1-8deb1.firebaseapp.com",
+            databaseURL: "https://project-1-8deb1.firebaseio.com",
+            projectId: "project-1-8deb1",
+            storageBucket: "project-1-8deb1.appspot.com",
+            messagingSenderId: "880463477699"
+        };
         firebase.initializeApp(config);
         // Create a variable to reference the database
         app.database = firebase.database();
@@ -286,8 +241,8 @@ var app = {
         var currentTime;
         currentTime = moment().format("hh:mm:ss a");
         $(".time").html("<h4>" + currentTime + "</h4>");
-    }
+    },
 
-    
+
 }
 
