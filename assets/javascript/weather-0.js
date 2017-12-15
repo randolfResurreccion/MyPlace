@@ -34,13 +34,15 @@ weather = {
             let latStore = $("<button>");
             latStore.val(lat);
             latStore.attr("id", "lat-store");
-            $(".page-header").append(latStore);
+            latStore.attr("style", "display:none");
+            $("html").append(latStore);
             var lon = response.coord.lon;
             console.log(lon);
             let lonStore = $("<button>");
             lonStore.val(lon);
             lonStore.attr("id", "lon-store");
-            $(".page-header").append(lonStore);
+            lonStore.attr("style", "display:none");
+            $("html").append(lonStore);
 
             // gets the weather icon
             let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
