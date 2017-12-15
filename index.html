@@ -45,9 +45,10 @@
             <h1 class="headerName"></h1>
             <p class="headerLocation"></p>
         </div>
-        <div class="pull-right">
-            <h3 class="text-right date"></h3>
-            <p class="text-right time"></p>
+        <div class="right-div">
+            <h3 class="date"></h3>
+            <p class="time"></p>
+            <button class="button button-default" id="logout">Logout</button>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -61,7 +62,7 @@
                     </div>
                     <br>
                     <button type="submit" class="btn btn-default usernameSubmit">Submit</button>
-                    <a href="#" class="usernameNeed">Don't have a username?</a>
+                    <a href="#" class="usernameNeed">Don't have a username? Register here</a>
                 </form>
             </div>
         </div>
@@ -87,8 +88,8 @@
         </div>
         <!-- map div -->
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
+            <div class="col-md-12 min-height-fix">
+                <div class="panel panel-default" id="map-panel-def">
                     <div class="panel-heading" id="map-panel-heading">
                         <h3 class="panel-title" id="map-panel-title">Map hidden, click to show</h3>
                     </div>
@@ -101,7 +102,7 @@
         </div>
         <!-- lower row -->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 min-height-fix">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -111,18 +112,31 @@
                     </div>
                     <div class="panel-body nat-news-pan">
                     </div>
+                    <div class="panel-body" id="collapse2">
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" id="colBtn2" data-exp="no">Expand</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 min-height-fix">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Events near you</h3>
+                        <h3 class="panel-title">
+                            <strong>
+                                <i class="glyphicon glyphicon-calendar"></i> Events near you</strong>
+                        </h3>
                     </div>
                     <div class="panel-body events-pan">
                     </div>
+                    <div class="panel-body" id="collapse1">
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" id="colBtn1" data-exp="no">Expand</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 min-height-fix">
                 <div class="panel panel-default" id="w-pan">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -167,27 +181,21 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <strong id="bookmarks-title">
-                                <i class='fa fa-bookmark' aria-hidden='true'></i>  Your Bookmarks
+                                <i class='fa fa-bookmark' aria-hidden='true'></i> Your Bookmarks
                             </strong>
                         </h3>
                     </div>
                     <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12" id="bookmarks"></div>
-                    </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="bookmarks"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
+
     </div>
-
-
-
+    </div>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMhlhxQP_IoFZkFWSRZw96yZMLiUIkDmU&callback=app.initMap"></script>
 

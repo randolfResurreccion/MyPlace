@@ -14,15 +14,11 @@ body {
         background-image: url("https://i.pinimg.com/originals/23/40/fc/2340fc24618606b02c75e340cf19c995.jpg")
     }
 
-#main-container {
-    padding-top: 10px;
-}
-
 .page-header {
     background-color: #333;
     margin: 0 auto;
     margin-bottom: 10px;
-    height: 140px;
+    height: 240px;
     color: #999;
 }
 
@@ -37,7 +33,7 @@ body {
 }
 
 #main-container {
-    background: #333;
+    background: rgba(51, 51, 51, .85);
 }
 
 .modal-inner-username {
@@ -87,6 +83,24 @@ body {
     display: none;
 }
 
+#collapse1 {
+    display:none;
+    margin-top:-30px;
+}
+
+#collapse2 {
+    display:none;
+    margin-top: -30px;
+}
+
+#map-panel-def {
+    margin-top: 10px;
+}
+
+.min-height-fix {
+    min-height: 0;
+}
+
 #map { 
     height:500px;
 }
@@ -104,6 +118,10 @@ tr {
     width: 165px;
     
     
+}
+
+#logout {
+    display: none;
 }
 
 #temp-display {
@@ -131,7 +149,7 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 360px) {
 
     body {
         padding: 0;
@@ -141,8 +159,29 @@ a:active {
         background-size: cover;
         margin-bottom: 10px;
     }
-   
+
+@media screen and (max-width: 680px) {
+
+    .right-div {
+        float: left;
+        margin-left: 25px;
+    }
+
 }
+
+@media screen and (min-width: 681px) {
+    
+    .page-header {
+        height: 140px;
+    }
+        .right-div {
+            float: right;
+            margin-right: 25px;
+            margin-left: 25px;
+        }
+    
+    }
+
 @media screen and (min-width: 680px) {
 
     body {

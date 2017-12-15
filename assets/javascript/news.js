@@ -41,6 +41,33 @@ function getNews() {
             articleDiv.append(linkBookmark);
             $(".nat-news-pan").append(articleDiv);
         }
+
+        for (var i = 2; i < articles.length; i += 10) {
+            
+            //get data from response
+            var title = response.articles[i].title;
+            var url = response.articles[i].url;
+            var source = response.articles[i].source.name;
+
+            //create elements for news data
+            var articleDiv = $("<div>");
+            articleDiv.addClass('well');
+            var ptag = $("<p>");
+            ptag.addClass("title-link");
+            var atag = $("<a></a>");
+            atag.attr("href", url);
+            atag.attr("target", "_blank");
+            var pSource = $("<p>");
+            pSource.addClass("news-source");
+
+            // append data from response to appropriate elements created
+            atag.text(title);
+            ptag.append(atag);
+            pSource.text("Source: " + source);
+            articleDiv.append(ptag)
+            articleDiv.append(pSource);
+            $("#collapse2").append(articleDiv);
+        }
     });
 
 }

@@ -47,10 +47,42 @@ function events(x) {
             eventDiv.append(pDate);
             eventDiv.append(pBook);
             $(".events-pan").append(eventDiv);
+        }
 
-            $("span.event-" + id).on("click", function() {
-                console.log("test");
-            })
+        for (var i = 5; i < events.length; i++) {
+            // store data from response in local variables
+            var shortTitle = response.events[i].short_title;
+            var url = response.events[i].url;
+            var venue = response.events[i].venue.name;
+            var date = moment(response.events[i].datetime_local).format("MMMM Do, h:mm a");
+            var id = response.events[i].id;
+
+            // create html elements to display data
+            var eventDiv = $("<div>");
+            eventDiv.addClass('well well-lg');
+            // eventDiv.attr("id", "events")
+            // eventDiv.attr("id", "colDiv");
+            var ptag = $("<p>");
+            ptag.addClass("title-link");
+            var atag = $("<a></a>");
+            atag.attr("href", url);
+            atag.attr("target", "_blank");
+            var pVenue = $("<p>");
+            pVenue.addClass("venue");
+            var pDate = $("<p>");
+            pDate.addClass("event-date");
+            var pBook = $("<p>");   
+            pBook.addClass("event-" + id);
+
+            atag.text(shortTitle);
+            ptag.append(atag);
+            pVenue.text("Where: " + venue);
+            pDate.text("When: " + date);
+            eventDiv.append(ptag)
+            eventDiv.append(pVenue);
+            eventDiv.append(pDate);
+            eventDiv.append(pBook);
+            $("#collapse1").append(eventDiv);
         }
     })
 }
