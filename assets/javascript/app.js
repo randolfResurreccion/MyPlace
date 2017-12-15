@@ -1,6 +1,7 @@
 // at page load
 $(document).ready(function () {
 
+   
     // Initialize firebase
     app.initFireBase();
 
@@ -210,6 +211,8 @@ var app = {
         firebase.initializeApp(config);
         // Create a variable to reference the database
         app.database = firebase.database();
-    }
+    },
+
+    
 }
 
