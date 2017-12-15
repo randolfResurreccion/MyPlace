@@ -54,9 +54,15 @@ $(document).ready(function () {
             
                 // set user data into firebase
                 var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
-                userRef.push({
-                    bookmark_url: itemBookmarked[1]
+                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
+                    const userData = snapshot.val();
+                    if (!userData){
+                        userRef.push({
+                            bookmark_url: itemBookmarked[1]
+                        });
+                    }
                 });
+                
                 $("#bookmarks").text("");
                 app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (snapshot) {
                     snapshot.forEach(function(child){
