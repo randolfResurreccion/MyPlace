@@ -35,6 +35,8 @@ function events(x) {
             pVenue.addClass("venue");
             var pDate = $("<p>");
             pDate.addClass("event-date");
+            var pBook = $("<p>");
+            pBook.addClass("event-" + id);
 
             atag.text(shortTitle);
             ptag.append(atag);
@@ -43,9 +45,12 @@ function events(x) {
             eventDiv.append(ptag)
             eventDiv.append(pVenue);
             eventDiv.append(pDate);
+            eventDiv.append(pBook);
             $(".events-pan").append(eventDiv);
 
+            $("span.event-" + id).on("click", function() {
+                console.log("test");
+            })
         }
-
     })
 }

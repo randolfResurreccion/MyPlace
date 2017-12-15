@@ -114,13 +114,6 @@ tr {
 
 /* styling for news panel content */
 
-.article, .event {
-    background: rgb(230, 227, 227);
-    color: rgb(4, 4, 70);
-    padding:10px;
-    margin:5px;
-}
-
 a:link {
     text-decoration: none;
    
