@@ -73,22 +73,29 @@ var app = {
 
             // retrieve data from firebase and display to user after login
             app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
-                
-                var userName = snapshot.val().name;
-                var userLoc = snapshot.val().loc;
-                var currentDate = moment().format("MMMM DD, YYYY");
+                if (snapshot.val()) {
 
-                // call weather, news and events to get data using API calls
-                weather.call(userLoc);
-                events(userLoc);
-                getNews();
-                app.updateTime();
-                setInterval(app.updateTime, 1000);
-                $(".headerName").text("Welcome, " + userName);
-                $(".date").text(currentDate);
+                    var userName = snapshot.val().name;
+                    var userLoc = snapshot.val().loc;
+                    var currentDate = moment().format("MMMM DD, YYYY");
 
-                $(".modal-outer-username").fadeOut(1000);
-                $(".panel").show(750);
+                    // call weather, news and events to get data using API calls
+                    weather.call(userLoc);
+                    events(userLoc);
+                    getNews();
+                    app.updateTime();
+                    setInterval(app.updateTime, 1000);
+                    $(".headerName").text("Welcome, " + userName);
+                    $(".date").text(currentDate);
+
+                    $(".modal-outer-username").fadeOut(1000);
+                    $(".panel").show(750);
+                }
+                else {
+                    $("#unDiv").addClass("has-error");
+                    $("#labelError").append("<span class='label label-danger'>Invalid username. Please register</span>");
+                    $("#labelError").attr("style", "color:rgb(156, 59, 59)");
+                }
             });
 
         }
