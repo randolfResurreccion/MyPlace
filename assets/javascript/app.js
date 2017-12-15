@@ -1,43 +1,53 @@
 
 // at page load
 $(document).ready(function () {
-   
     // Initialize firebase
     app.initFireBase();
 
-    $(".modal-outer-username").fadeIn(750);
+    var savedEmail = localStorage.getItem("savedEmail");
+    console.log(savedEmail);
+    if (savedEmail) {
 
-    $(".usernameNeed").click(function (event) {
+        app.userlogin(savedEmail);
+        $("#logout").attr("style", "display:inline");
 
-        // Prevent the page from refreshing
-        event.preventDefault();
+    } else {
 
-        // animation on user input forms
-        $(".modal-outer-username").hide();
-        $(".modal-inner-username").hide();
-        $(".modal-outer").slideToggle(750);
-        $(".modal-inner").slideToggle(750);
-    });
+        $(".modal-outer-username").fadeIn(750);
 
-    // on click of submit button
-    $(".usernameSubmit").click(function (event) {
+        $(".usernameNeed").click(function (event) {
 
-        // Prevent the page from refreshing
-        event.preventDefault();
+            // Prevent the page from refreshing
+            event.preventDefault();
 
-        // log the user in
-        app.userlogin();
-    });
+            // animation on user input forms
+            $(".modal-outer-username").hide();
+            $(".modal-inner-username").hide();
+            $(".modal-outer").slideToggle(750);
+            $(".modal-inner").slideToggle(750);
+        });
 
-    // new user data is updated in firebase after registration
-    $(".modalBtn").click(function (event) {
+        // on click of submit button
+        $(".usernameSubmit").click(function (event) {
 
-        // Prevent the page from refreshing
-        event.preventDefault();
+            // Prevent the page from refreshing
+            event.preventDefault();
 
-        // add the user to the database
-        app.newUser();
-    });
+            // log the user in
+            app.userlogin();
+        });
+
+        // new user data is updated in firebase after registration
+        $(".modalBtn").click(function (event) {
+
+            // Prevent the page from refreshing
+            event.preventDefault();
+
+            // add the user to the database
+            app.newUser();
+        });
+
+    };
 
     // when the map panel header is clicked
     $("#map-panel-heading").click(function (event) {
@@ -54,6 +64,12 @@ $(document).ready(function () {
         app.collapseBtn2();
     });
 
+    $("#logout").click(function () {
+        
+        localStorage.clear();
+        location.reload();
+      
+    })
 });
 
 
@@ -63,23 +79,15 @@ $(document).ready(function () {
 var app = {
 
     // when user logs in
-    userlogin: function () {
+    userlogin: function (name) {
 
-        // get user input from form and store it in local variable
-        var unEmail = $("#usernameEmail").val().trim();
-        var cleanUnEmail = unEmail.replace(".", ",");
+        if (name) {
 
-        // user input email validation
-        if (unEmail === "") {
+            var existingEmail = name;
+            var cleanExEmail = existingEmail.replace(".", ",");
 
-            $("#unDiv").addClass("has-error");
-            $("#labelError").append("<span class='label label-danger'>Must fill out field</span>");
-            $("#labelError").attr("style", "color:rgb(156, 59, 59)");
-        } else {
-
-
-            // retrieve data from firebase and display to user after login
-            app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
+            console.log("test0");
+            app.database.ref().child(cleanExEmail).on("value", function (snapshot) {
                 if (snapshot.val()) {
 
                     var userName = snapshot.val().name;
@@ -97,28 +105,76 @@ var app = {
 
                     $(".modal-outer-username").fadeOut(1000);
                     $(".panel").show(750);
-                    
-
-                }
-                else {
+                } else {
                     $("#unDiv").addClass("has-error");
                     $("#labelError").append("<span class='label label-danger'>Invalid username. Please register</span>");
                     $("#labelError").attr("style", "color:rgb(156, 59, 59)");
                 }
             });
+        } else {
 
+            // get user input from form and store it in local variable
+            var unEmail = $("#usernameEmail").val().trim();
+            var cleanUnEmail = unEmail.replace(".", ",");
+
+            localStorage.setItem("savedEmail", unEmail);
+
+
+            // user input email validation
+            if (unEmail === "") {
+
+                $("#unDiv").addClass("has-error");
+                $("#labelError").append("<span class='label label-danger'>Must fill out field</span>");
+                $("#labelError").attr("style", "color:rgb(156, 59, 59)");
+            } else {
+
+
+                // retrieve data from firebase and display to user after login
+                app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
+                    if (snapshot.val()) {
+
+                        var userName = snapshot.val().name;
+                        var userLoc = snapshot.val().loc;
+                        var currentDate = moment().format("MMMM DD, YYYY");
+
+                        // call weather, news and events to get data using API calls
+                        weather.call(userLoc);
+                        events(userLoc);
+                        getNews();
+                        app.updateTime();
+                        setInterval(app.updateTime, 1000);
+                        $(".headerName").text("Welcome, " + userName);
+                        $(".date").text(currentDate);
+
+                        $(".modal-outer-username").fadeOut(1000);
+                        $(".panel").show(750);
+                    }
+                    else {
+                        $("#unDiv").addClass("has-error");
+                        $("#labelError").append("<span class='label label-danger'>Invalid username. Please register</span>");
+                        $("#labelError").attr("style", "color:rgb(156, 59, 59)");
+                    }
+                });
+
+            }
         }
+        $("#logout").attr("style", "display:inline");
     },
 
     // when a new user logs in
     newUser: function () {
+
         // get user input from form and store in local variables
         var name = $("#modalName").val();
         var loc = $("#modalLoc").val();
         var email = $("#modalEmail").val();
+
+        localStorage.setItem("savedEmail", email);
+
         var cleanEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
+
         $(".form-group").attr("class", "form-group");
         $("span").text("");
         $("label").attr("style", "");
@@ -146,7 +202,7 @@ var app = {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            
+
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
@@ -170,6 +226,7 @@ var app = {
 
 
         }
+        $("#logout").attr("style", "display:inline");
     },
 
     // hides the map
