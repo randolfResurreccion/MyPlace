@@ -50,7 +50,6 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
-        if (itemBookmarked) {
             
                 // set user data into firebase
                 var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
@@ -63,30 +62,11 @@ $(document).ready(function () {
                     }
                 });
                 
-                $("#bookmarks").text("");
-                app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (snapshot) {
-                    snapshot.forEach(function(child){
-                        var key = child.key;
-                        var value = child.val();
-                        var ptag = $("<p>");
-                        ptag.addClass("link");
-                        var atag = $("<a></a>");
-                        atag.attr("href", value);
-                        atag.attr("target", "_blank");
-                        atag.text(value);
-                        ptag.append(atag);
-                        $("#bookmarks").append(ptag)
-                    });
-                }, function (errorObject) {
-                    
-                          console.log("Errors handled: " + errorObject.code);
-                    
-            });
-        }
-
 });
 
 });
+
+    
 
 // core logic 
 
@@ -111,7 +91,7 @@ var app = {
 
             // retrieve data from firebase and display to user after login
             app.database.ref().child(cleanUnEmail).once("value").then( function (snapshot) {
-
+                app.bookmarkListener();
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
@@ -189,7 +169,7 @@ var app = {
                 name: name,
                 loc: loc
             });
-
+            app.bookmarkListener();
 
         }
     },
@@ -268,6 +248,29 @@ var app = {
         currentTime = moment().format("hh:mm:ss a");
         $(".time").html("<h4>" + currentTime + "</h4>");
     },
+
+    // listner for bookmarks
+    bookmarkListener: function(){
+        $("#bookmarks").text("");
+app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (bmSnapshot) {
+    bmSnapshot.forEach(function(child){
+                var key = child.key;
+                var value = child.val();
+                var ptag = $("<p>");
+                ptag.addClass("link");
+                var atag = $("<a></a>");
+                atag.attr("href", value);
+                atag.attr("target", "_blank");
+                atag.text(value);
+                ptag.append(atag);
+                $("#bookmarks").append(ptag)
+            });
+        }, function (errorObject) {
+            
+                  console.log("Errors handled: " + errorObject.code);
+            
+    });
+}
 
 
 }
