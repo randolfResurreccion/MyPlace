@@ -136,7 +136,6 @@ var app = {
             $(".modal-outer").fadeIn(1000);
             $(".modal-outer").hide(750);
             $(".panel").show(750);
-            $("#main-container").show(750);
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
