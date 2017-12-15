@@ -51,14 +51,33 @@ $(document).ready(function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
         if (itemBookmarked) {
+            
                 // set user data into firebase
                 var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
                 userRef.push({
-                    bookmark: itemBookmarked[1]
+                    bookmark_url: itemBookmarked[1]
                 });
-                
+                $("#bookmarks").text("");
+                app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (snapshot) {
+                    snapshot.forEach(function(child){
+                        var key = child.key;
+                        var value = child.val();
+                        var ptag = $("<p>");
+                        ptag.addClass("link");
+                        var atag = $("<a></a>");
+                        atag.attr("href", value);
+                        atag.attr("target", "_blank");
+                        atag.text(value);
+                        ptag.append(atag);
+                        $("#bookmarks").append(ptag)
+                    });
+                }, function (errorObject) {
+                    
+                          console.log("Errors handled: " + errorObject.code);
+                    
+            });
+        }
 
-            }
 });
 
 });
