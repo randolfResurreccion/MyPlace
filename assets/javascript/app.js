@@ -46,9 +46,16 @@ $(document).ready(function () {
         app.toggleMap();
     });
 
+    $("#colBtn1").click(function() {
+        app.collapseBtn1();
+    });
 
+    $("#colBtn2").click(function() {
+        app.collapseBtn2();
+    });
 
 });
+
 
 // core logic 
 
@@ -230,8 +237,39 @@ var app = {
         var currentTime;
         currentTime = moment().format("hh:mm:ss a");
         $(".time").html("<h4>" + currentTime + "</h4>");
-    }
+    },
 
+    collapseBtn1: function () {
+        var colBtnToggle = $("#colBtn1").attr("data-exp");
+
+            if(colBtnToggle == "no") {
+                $("#colBtn1").attr("data-exp", "yes");
+                $("#collapse1").toggle();
+                $("#colBtn1").text("Minimize");
+            }
+            else {
+                $("#colBtn1").attr("data-exp", "no");
+                $("#collapse1").toggle();
+                $("#colBtn1").text("Expand");
+            }
+
+    },
+
+    collapseBtn2: function () {
+        var colBtnToggle = $("#colBtn2").attr("data-exp");
+
+            if(colBtnToggle == "no") {
+                $("#colBtn2").attr("data-exp", "yes");
+                $("#collapse2").toggle();
+                $("#colBtn2").text("Minimize");
+            }
+            else {
+                $("#colBtn2").attr("data-exp", "no");
+                $("#collapse2").toggle();
+                $("#colBtn2").text("Expand");
+            }
+
+    }
     
 }
 
