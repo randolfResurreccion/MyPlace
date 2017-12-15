@@ -31,13 +31,14 @@ function getNews() {
             atag.attr("target", "_blank");
             var pSource = $("<p>");
             pSource.addClass("news-source");
-
+            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=article,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
             // append data from response to appropriate elements created
             atag.text(title);
             ptag.append(atag);
             pSource.text("Source: " + source);
             articleDiv.append(ptag)
             articleDiv.append(pSource);
+            articleDiv.append(linkBookmark);
             $(".nat-news-pan").append(articleDiv);
         }
 
