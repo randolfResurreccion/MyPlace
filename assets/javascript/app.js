@@ -14,6 +14,11 @@ var config = {
 firebase.initializeApp(config);
 // Create a variable to reference the database
 var database = firebase.database();
+var currentTime;
+function updateTime () {
+    currentTime = moment().format("hh:mm:ss a");
+    $(".time").text(currentTime);
+}
 
 $(document).ready(function () {
     $(".modal-outer-username").fadeIn(750);
@@ -51,15 +56,16 @@ $(document).ready(function () {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
-                var currentTime = moment().format("hh:mm a");
+
                 // initMap(userLoc);
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
                 getNews();
+                setInterval(updateTime, 1000);
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
-                $(".time").text(currentTime);
+                
             });
 
         }
@@ -105,12 +111,13 @@ $(document).ready(function () {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            $(".time").text(currentTime);
+            
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
             getNews();
+            setInterval(updateTime, 1000);
             // initMap(loc);
             var user = {
                 name: name,
