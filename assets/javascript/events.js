@@ -34,7 +34,7 @@ function events(x) {
             pVenue.addClass("venue");
             var pDate = $("<p>");
             pDate.addClass("event-date");
-            var divbookmark = $("<div class='bookmark' data-url=event,"+url+"><a href='#' data-toggle='tooltip' title='Click to Bookmark'><i class='fa fa-bookmark' aria-hidden='true'></i></a>")
+            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=event,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
 
             atag.text(shortTitle);
             ptag.append(atag);
@@ -43,7 +43,7 @@ function events(x) {
             eventDiv.append(ptag)
             eventDiv.append(pVenue);
             eventDiv.append(pDate);
-            eventDiv.append(divbookmark);
+            eventDiv.append(linkBookmark);
             $(".events-pan").append(eventDiv);
 
         }
