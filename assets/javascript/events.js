@@ -24,7 +24,8 @@ function events(x) {
 
             // create html elements to display data
             var eventDiv = $("<div>");
-            eventDiv.addClass('well');
+            eventDiv.addClass('well well-lg');
+            // eventDiv.attr("id", "events")
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -34,7 +35,8 @@ function events(x) {
             pVenue.addClass("venue");
             var pDate = $("<p>");
             pDate.addClass("event-date");
-            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=event,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
+            var pBook = $("<p>");
+            pBook.addClass("event-" + id);
 
             atag.text(shortTitle);
             ptag.append(atag);
@@ -43,10 +45,12 @@ function events(x) {
             eventDiv.append(ptag)
             eventDiv.append(pVenue);
             eventDiv.append(pDate);
-            eventDiv.append(linkBookmark);
+            eventDiv.append(pBook);
             $(".events-pan").append(eventDiv);
 
+            $("span.event-" + id).on("click", function() {
+                console.log("test");
+            })
         }
-
     })
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Get the user input , do required validations and save user data to firebase
 // Allows new users to register
 // Makes calls to functions in other js files to display weather, news and local events data to user
@@ -28,33 +29,83 @@ firebase.initializeApp(config);
 var cleanUnEmail = "";
 // Create a variable to reference the database
 var database = firebase.database();
+=======
+>>>>>>> master
 
+// at page load
 $(document).ready(function () {
+   
+    // Initialize firebase
+    app.initFireBase();
+
     $(".modal-outer-username").fadeIn(750);
 
     $(".usernameNeed").click(function (event) {
+
         // Prevent the page from refreshing
         event.preventDefault();
+
         // animation on user input forms
         $(".modal-outer-username").hide();
         $(".modal-inner-username").hide();
         $(".modal-outer").slideToggle(750);
         $(".modal-inner").slideToggle(750);
-
     });
+
     // on click of submit button
     $(".usernameSubmit").click(function (event) {
+
         // Prevent the page from refreshing
         event.preventDefault();
 
+        // log the user in
+        app.userlogin();
+    });
+
+    // new user data is updated in firebase after registration
+    $(".modalBtn").click(function (event) {
+
+        // Prevent the page from refreshing
+        event.preventDefault();
+
+        // add the user to the database
+        app.newUser();
+    });
+
+    // when the map panel header is clicked
+    $("#map-panel-heading").click(function (event) {
+
+        // expand or collapse the map 
+        app.toggleMap();
+    });
+
+
+
+});
+
+// core logic 
+
+// app object, contains methods for logging in, creating users, firebase, and map toggle
+var app = {
+
+    // when user logs in
+    userlogin: function () {
+
         // get user input from form and store it in local variable
         var unEmail = $("#usernameEmail").val().trim();
+<<<<<<< HEAD
         cleanUnEmail = unEmail.replace(".", ",");
+=======
+        var cleanUnEmail = unEmail.replace(".", ",");
+
+>>>>>>> master
         // user input email validation
         if (unEmail === "") {
+
             $("#unDiv").addClass("has-error");
             $("#labelError").append("<span class='label label-danger'>Must fill out field</span>");
             $("#labelError").attr("style", "color:rgb(156, 59, 59)");
+<<<<<<< HEAD
         }
         else {
             $(".modal-outer-username").fadeOut(1000);
@@ -82,15 +133,36 @@ $(document).ready(function () {
                     alert("invalid email ID. Please register if you are a new user");
                 }
 
+=======
+        } else {
+
+
+            // retrieve data from firebase and display to user after login
+            app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
+                
+                var userName = snapshot.val().name;
+                var userLoc = snapshot.val().loc;
+                var currentDate = moment().format("MMMM DD, YYYY");
+
+                // call weather, news and events to get data using API calls
+                weather.call(userLoc);
+                events(userLoc);
+                getNews();
+                app.updateTime();
+                setInterval(app.updateTime, 1000);
+                $(".headerName").text("Welcome, " + userName);
+                $(".date").text(currentDate);
+
+                $(".modal-outer-username").fadeOut(1000);
+                $(".panel").show(750);
+>>>>>>> master
             });
+
         }
-    });
+    },
 
-    // new user data is updated in firebase after registration
-    $(".modalBtn").click(function (event) {
-        // Prevent the page from refreshing
-        event.preventDefault();
-
+    // when a new user logs in
+    newUser: function () {
         // get user input from form and store in local variables
         var name = $("#modalName").val();
         var loc = $("#modalLoc").val();
@@ -122,16 +194,18 @@ $(document).ready(function () {
             $(".modal-outer").fadeIn(1000);
             $(".modal-outer").hide(750);
             $(".panel").show(750);
-            $("#map").show(750);
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            $(".time").text(currentTime);
+            
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
             getNews();
+            app.updateTime();
+            setInterval(app.updateTime, 1000);
+            // initMap(loc);
             var user = {
                 name: name,
                 loc: loc,
@@ -139,44 +213,81 @@ $(document).ready(function () {
             }
 
             // set user data into firebase
-            var userRef = database.ref().child(user.email);
+            var userRef = app.database.ref().child(user.email);
             userRef.set({
                 name: name,
                 loc: loc
             });
+
+
         }
-    });
+    },
 
-    // saving bookmarks from articles and events in firebase
-    $(document).on("click", ".bookmark", function (event) {
-                // Prevent the page from refreshing
-                event.preventDefault();
-        var dataUrl = $(this).attr("data-url");
-        var itemBookmarked = dataUrl.split(",");
-        if (itemBookmarked) {
-            // if (itemBookmarked[0] === "article") {
-                console.log("article");
-                // database.ref().child(cleanUnEmail).on("value", function (snapshot)  {
+    // hides the map
+    toggleMap: function () {
 
-                // set user data into firebase
-                var userRef = database.ref().child(cleanUnEmail).child("bookmarks");
-                userRef.push({
-                    articles: itemBookmarked[1]
-                });
+        // if the map div is expanded
+        if ($("#map-div").attr("data") == "show") {
 
-                // });
-            // }
-            // else if (itemBookmarked[0] === "event") {
+            // hide the map div
+            $("#map-div").attr('style', "display:none");
+            $("#map-div").attr('data', "hide");
 
+            // if the map div is hidden
+        } else {
 
-            //     // set user data into firebase
-            //     var userRef = database.ref().child(cleanUnEmail).child("bookmarks");
-            //     userRef.push({
-            //         events: itemBookmarked[1]
-            //     });
+            // show the map div
+            $("#map-div").attr('style', "display:show");
+            $("#map-div").attr('data', "show");
 
-
-            // }
+            // re initialize the map
+            app.initMap();
         }
-    });
-});
+    },
+
+    // initializes the google map JS api
+    initMap: function () {
+
+        var uluru = { lat: parseFloat($("#lat-store").val()), lng: parseFloat($("#lon-store").val()) };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+
+    },
+
+    // holds the database reference
+    database: "",
+
+    // initializes firebase
+    initFireBase: function () {
+        var config = {
+            apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
+            authDomain: "homepage-project-64ca7.firebaseapp.com",
+            databaseURL: "https://homepage-project-64ca7.firebaseio.com",
+            projectId: "homepage-project-64ca7",
+            storageBucket: "homepage-project-64ca7.appspot.com",
+            messagingSenderId: "438523083006"
+        };
+
+        firebase.initializeApp(config);
+        // Create a variable to reference the database
+        app.database = firebase.database();
+    },
+
+    updateTime: function () {
+        var currentTime;
+        currentTime = moment().format("hh:mm:ss a");
+        $(".time").html("<h4>" + currentTime + "</h4>");
+    }
+
+    
+}
+
