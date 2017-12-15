@@ -2,16 +2,30 @@
 // Allows new users to register
 // Makes calls to functions in other js files to display weather, news and local events data to user
 // Initialize firebase
-var config = {
-    apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-    authDomain: "homepage-project-64ca7.firebaseapp.com",
-    databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-    projectId: "homepage-project-64ca7",
-    storageBucket: "homepage-project-64ca7.appspot.com",
-    messagingSenderId: "438523083006"
-};
+  // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
+//     authDomain: "project-1-8deb1.firebaseapp.com",
+//     databaseURL: "https://project-1-8deb1.firebaseio.com",
+//     projectId: "project-1-8deb1",
+//     storageBucket: "",
+//     messagingSenderId: "880463477699"
+//   };
+//   firebase.initializeApp(config);
 
-firebase.initializeApp(config);
+//test with shama firebase
+  // Initialize Firebase
+
+  var config = {
+    apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
+    authDomain: "project-1-8deb1.firebaseapp.com",
+    databaseURL: "https://project-1-8deb1.firebaseio.com",
+    projectId: "project-1-8deb1",
+    storageBucket: "project-1-8deb1.appspot.com",
+    messagingSenderId: "880463477699"
+  };
+  firebase.initializeApp(config);
+
 // Create a variable to reference the database
 var database = firebase.database();
 
@@ -49,6 +63,8 @@ $(document).ready(function () {
           
             // retrieve data from firebase and display to user after login
             database.ref().child(cleanUnEmail).on("value", function (snapshot) {
+               if(snapshot.val()){
+                
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
@@ -61,6 +77,11 @@ $(document).ready(function () {
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
                 $(".time").text(currentTime);
+               }
+               else {
+                   alert("invalid email ID. Please register if you are a new user");
+               }
+  
             });
         }
     });
