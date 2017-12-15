@@ -1,31 +1,6 @@
-<<<<<<< HEAD
-// Get the user input , do required validations and save user data to firebase
-// Allows new users to register
-// Makes calls to functions in other js files to display weather, news and local events data to user
-// Initialize firebase
-var config = {
-    apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-    authDomain: "homepage-project-64ca7.firebaseapp.com",
-    databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-    projectId: "homepage-project-64ca7",
-    storageBucket: "homepage-project-64ca7.appspot.com",
-    messagingSenderId: "438523083006"
-};
 
-firebase.initializeApp(config);
-// Create a variable to reference the database
-var database = firebase.database();
-var currentTime;
-function updateTime () {
-    currentTime = moment().format("hh:mm:ss a");
-    $(".time").text(currentTime);
-}
-
-=======
 // at page load
->>>>>>> master
 $(document).ready(function () {
-
    
     // Initialize firebase
     app.initFireBase();
@@ -102,28 +77,18 @@ var app = {
                 var userName = snapshot.val().name;
                 var userLoc = snapshot.val().loc;
                 var currentDate = moment().format("MMMM DD, YYYY");
-<<<<<<< HEAD
 
-                // initMap(userLoc);
-=======
-                var currentTime = moment().format("hh:mm a");
-
->>>>>>> master
                 // call weather, news and events to get data using API calls
                 weather.call(userLoc);
                 events(userLoc);
                 getNews();
-                setInterval(updateTime, 1000);
+                app.updateTime();
+                setInterval(app.updateTime, 1000);
                 $(".headerName").text("Welcome, " + userName);
                 $(".date").text(currentDate);
-<<<<<<< HEAD
-                
-=======
-                $(".time").text(currentTime);
 
                 $(".modal-outer-username").fadeOut(1000);
                 $(".panel").show(750);
->>>>>>> master
             });
 
         }
@@ -171,7 +136,8 @@ var app = {
             weather.call(loc);
             events(loc);
             getNews();
-            setInterval(updateTime, 1000);
+            app.updateTime();
+            setInterval(app.updateTime, 1000);
             // initMap(loc);
             var user = {
                 name: name,
@@ -248,6 +214,12 @@ var app = {
         // Create a variable to reference the database
         app.database = firebase.database();
     },
+
+    updateTime: function () {
+        var currentTime;
+        currentTime = moment().format("hh:mm:ss a");
+        $(".time").text(currentTime);
+    }
 
     
 }
