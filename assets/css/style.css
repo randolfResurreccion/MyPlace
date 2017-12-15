@@ -22,7 +22,7 @@ body {
     background-color: #333;
     margin: 0 auto;
     margin-bottom: 10px;
-    height: 140px;
+    height: 240px;
     color: #999;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 #main-container {
-    background: #333;
+    background: rgba(51, 51, 51, .85);
 }
 
 .modal-inner-username {
@@ -114,13 +114,6 @@ tr {
 
 /* styling for news panel content */
 
-.article, .event {
-    background: rgb(230, 227, 227);
-    color: rgb(4, 4, 70);
-    padding:10px;
-    margin:5px;
-}
-
 a:link {
     text-decoration: none;
    
@@ -138,7 +131,7 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 360px) {
 
     body {
         padding: 0;
@@ -148,8 +141,29 @@ a:active {
         background-size: cover;
         margin-bottom: 10px;
     }
-   
+
+@media screen and (max-width: 680px) {
+
+    .right-div {
+        float: left;
+        margin-left: 25px;
+    }
+
 }
+
+@media screen and (min-width: 681px) {
+    
+    .page-header {
+        height: 140px;
+    }
+        .right-div {
+            float: right;
+            margin-right: 25px;
+            margin-left: 25px;
+        }
+    
+    }
+
 @media screen and (min-width: 680px) {
 
     body {

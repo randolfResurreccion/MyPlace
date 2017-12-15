@@ -1,6 +1,6 @@
+
 // at page load
 $(document).ready(function () {
-
    
     // Initialize firebase
     app.initFireBase();
@@ -73,22 +73,29 @@ var app = {
 
             // retrieve data from firebase and display to user after login
             app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
-                
-                var userName = snapshot.val().name;
-                var userLoc = snapshot.val().loc;
-                var currentDate = moment().format("MMMM DD, YYYY");
-                var currentTime = moment().format("hh:mm a");
+                if (snapshot.val()) {
 
-                // call weather, news and events to get data using API calls
-                weather.call(userLoc);
-                events(userLoc);
-                getNews();
-                $(".headerName").text("Welcome, " + userName);
-                $(".date").text(currentDate);
-                $(".time").text(currentTime);
+                    var userName = snapshot.val().name;
+                    var userLoc = snapshot.val().loc;
+                    var currentDate = moment().format("MMMM DD, YYYY");
 
-                $(".modal-outer-username").fadeOut(1000);
-                $(".panel").show(750);
+                    // call weather, news and events to get data using API calls
+                    weather.call(userLoc);
+                    events(userLoc);
+                    getNews();
+                    app.updateTime();
+                    setInterval(app.updateTime, 1000);
+                    $(".headerName").text("Welcome, " + userName);
+                    $(".date").text(currentDate);
+
+                    $(".modal-outer-username").fadeOut(1000);
+                    $(".panel").show(750);
+                }
+                else {
+                    $("#unDiv").addClass("has-error");
+                    $("#labelError").append("<span class='label label-danger'>Invalid username. Please register</span>");
+                    $("#labelError").attr("style", "color:rgb(156, 59, 59)");
+                }
             });
 
         }
@@ -130,12 +137,14 @@ var app = {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
-            $(".time").text(currentTime);
+            
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
             getNews();
+            app.updateTime();
+            setInterval(app.updateTime, 1000);
             // initMap(loc);
             var user = {
                 name: name,
@@ -214,6 +223,12 @@ var app = {
         // Create a variable to reference the database
         app.database = firebase.database();
     },
+
+    updateTime: function () {
+        var currentTime;
+        currentTime = moment().format("hh:mm:ss a");
+        $(".time").html("<h4>" + currentTime + "</h4>");
+    }
 
     
 }
