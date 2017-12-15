@@ -150,7 +150,7 @@ a:active {
     }
    
 }
-@media screen and (min-width: 980px) {
+@media screen and (min-width: 680px) {
 
     body {
         padding: 0;
