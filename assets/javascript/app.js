@@ -382,12 +382,6 @@ app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (
             }
 
     },
-
-    // trafficNoIncidents: function () {
-    //     if (trafficReports().val() === "") {
-    //         $("#incidents-list").append("<p>No incidents to report</p>");
-    //     }
-    // }
     
 }
 
