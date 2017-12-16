@@ -101,10 +101,10 @@ var app = {
         if (name) {
 
             var existingEmail = name;
-            var cleanExEmail = existingEmail.replace(".", ",");
+            cleanUnEmail = existingEmail.replace(".", ",");
 
             console.log("test0");
-            app.database.ref().child(cleanExEmail).on("value", function (snapshot) {
+            app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                 if (snapshot.val()) {
                     app.bookmarkListener();
                     var userName = snapshot.val().name;
