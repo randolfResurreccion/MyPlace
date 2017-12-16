@@ -147,7 +147,7 @@ var app = {
 
 
                 // retrieve data from firebase and display to user after login
-                app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
+                app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                     if (snapshot.val()) {
                         app.bookmarkListener();
                         var userName = snapshot.val().name;
