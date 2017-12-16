@@ -93,6 +93,11 @@ body {
     margin-top: -30px;
 }
 
+.well {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
 #map-panel-def {
     margin-top: 10px;
 }
