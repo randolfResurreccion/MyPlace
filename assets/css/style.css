@@ -110,6 +110,10 @@ body {
     height:500px;
 }
 
+#incidents-list {
+    margin-top: 5px;
+}
+
 table {
     width: 100%;
 }

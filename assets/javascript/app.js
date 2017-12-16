@@ -60,6 +60,23 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
+<<<<<<< HEAD
+        console.log(itemBookmarked);
+            
+                // set user data into firebase
+                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
+                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
+                    const userData = snapshot.val();
+                    if (!userData){
+                        userRef.push({
+                            bookmark_url: itemBookmarked[1]
+                        });
+                    }
+                });        
+    });
+
+    $("#colBtn1").click(function() {
+=======
 
         // set user data into firebase
         var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
@@ -91,6 +108,7 @@ $(document).ready(function () {
     });
 
     $("#colBtn1").click(function () {
+>>>>>>> master
         app.collapseBtn1();
     });
 
@@ -101,9 +119,14 @@ $(document).ready(function () {
     $("#logout").click(function () {
 
         localStorage.clear();
+<<<<<<< HEAD
+        location.reload(); 
+    });
+=======
         location.reload();
 
     })
+>>>>>>> master
 });
 
 
@@ -130,6 +153,7 @@ var app = {
                     // call weather, news and events to get data using API calls
                     weather.call(userLoc);
                     events(userLoc);
+                    trafficReports(userLoc);
                     getNews();
                     app.updateTime();
                     setInterval(app.updateTime, 1000);
@@ -174,6 +198,7 @@ var app = {
                         weather.call(userLoc);
                         events(userLoc);
                         getNews();
+                        trafficReports(userLoc);
                         app.updateTime();
                         setInterval(app.updateTime, 1000);
                         $(".headerName").text("Welcome, " + userName);
@@ -238,6 +263,7 @@ var app = {
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
+            trafficReports(loc);
             getNews();
             app.updateTime();
             setInterval(app.updateTime, 1000);
@@ -269,7 +295,7 @@ var app = {
             // hide the map div
             $("#map-div").attr('style', "display:none");
             $("#map-div").attr('data', "hide");
-            $("#map-panel-title").text("Map hidden, click to show");
+            $("#map-panel-title").text("Traffic information hidden, click to show");
 
             // if the map div is hidden
         } else {
@@ -387,7 +413,12 @@ var app = {
             $("#colBtn2").text("Expand");
         }
 
+<<<<<<< HEAD
+    },
+    
+=======
     }
 
+>>>>>>> master
 }
 
