@@ -103,7 +103,6 @@ var app = {
             var existingEmail = name;
             cleanUnEmail = existingEmail.replace(".", ",");
 
-            console.log("test0");
             app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                 if (snapshot.val()) {
                     app.bookmarkListener();
@@ -328,14 +327,17 @@ var app = {
             bmSnapshot.forEach(function (child) {
                 var key = child.key;
                 var value = child.val();
+                var bookDiv = $("<div>");
+                bookDiv.addClass("well");
                 var ptag = $("<p>");
-                ptag.addClass("link");
+                ptag.addClass("title-link");
                 var atag = $("<a></a>");
                 atag.attr("href", value);
                 atag.attr("target", "_blank");
                 atag.text(value);
                 ptag.append(atag);
-                $("#bookmarks").append(ptag)
+                bookDiv.append(ptag);
+                $("#bookmarks").append(bookDiv);
             });
         }, function (errorObject) {
 
