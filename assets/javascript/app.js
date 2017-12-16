@@ -1,4 +1,4 @@
-
+var cleanUnEmail = "";
 // at page load
 $(document).ready(function () {
     // Initialize firebase
@@ -56,6 +56,23 @@ $(document).ready(function () {
         app.toggleMap();
     });
 
+    // saving bookmarks from articles and events in firebase
+    $(document).on("click", ".bookmark", function () {
+        var dataUrl = $(this).attr("data-url");
+        var itemBookmarked = dataUrl.split(",");
+            
+                // set user data into firebase
+                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
+                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
+                    const userData = snapshot.val();
+                    if (!userData){
+                        userRef.push({
+                            bookmark_url: itemBookmarked[1]
+                        });
+                    }
+                });
+                
+});
     $("#colBtn1").click(function() {
         app.collapseBtn1();
     });
@@ -89,7 +106,7 @@ var app = {
             console.log("test0");
             app.database.ref().child(cleanExEmail).on("value", function (snapshot) {
                 if (snapshot.val()) {
-
+                    app.bookmarkListener();
                     var userName = snapshot.val().name;
                     var userLoc = snapshot.val().loc;
                     var currentDate = moment().format("MMMM DD, YYYY");
@@ -113,9 +130,9 @@ var app = {
             });
         } else {
 
-            // get user input from form and store it in local variable
-            var unEmail = $("#usernameEmail").val().trim();
-            var cleanUnEmail = unEmail.replace(".", ",");
+        // get user input from form and store it in local variable
+        var unEmail = $("#usernameEmail").val().trim();
+        cleanUnEmail = unEmail.replace(".", ",");
 
             localStorage.setItem("savedEmail", unEmail);
 
@@ -132,7 +149,7 @@ var app = {
                 // retrieve data from firebase and display to user after login
                 app.database.ref().child(cleanUnEmail).on("value", function (snapshot) {
                     if (snapshot.val()) {
-
+                        app.bookmarkListener();
                         var userName = snapshot.val().name;
                         var userLoc = snapshot.val().loc;
                         var currentDate = moment().format("MMMM DD, YYYY");
@@ -168,10 +185,8 @@ var app = {
         var name = $("#modalName").val();
         var loc = $("#modalLoc").val();
         var email = $("#modalEmail").val();
-
+        cleanUnEmail = email.replace(".", ",");
         localStorage.setItem("savedEmail", email);
-
-        var cleanEmail = email.replace(".", ",");
         var currentDate = moment().format("MMMM DD, YYYY");
         var currentTime = moment().format("hh:mm a");
 
@@ -214,7 +229,7 @@ var app = {
             var user = {
                 name: name,
                 loc: loc,
-                email: cleanEmail
+                email: cleanUnEmail
             }
 
             // set user data into firebase
@@ -223,7 +238,7 @@ var app = {
                 name: name,
                 loc: loc
             });
-
+            app.bookmarkListener();
 
         }
         $("#logout").attr("style", "display:inline");
@@ -276,15 +291,25 @@ var app = {
 
     // initializes firebase
     initFireBase: function () {
-        var config = {
-            apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-            authDomain: "homepage-project-64ca7.firebaseapp.com",
-            databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-            projectId: "homepage-project-64ca7",
-            storageBucket: "homepage-project-64ca7.appspot.com",
-            messagingSenderId: "438523083006"
-        };
+        // var config = {
+        //     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
+        //     authDomain: "homepage-project-64ca7.firebaseapp.com",
+        //     databaseURL: "https://homepage-project-64ca7.firebaseio.com",
+        //     projectId: "homepage-project-64ca7",
+        //     storageBucket: "homepage-project-64ca7.appspot.com",
+        //     messagingSenderId: "438523083006"
+        // };
 
+        // firebase.initializeApp(config);
+
+        var config = {
+            apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
+            authDomain: "project-1-8deb1.firebaseapp.com",
+            databaseURL: "https://project-1-8deb1.firebaseio.com",
+            projectId: "project-1-8deb1",
+            storageBucket: "project-1-8deb1.appspot.com",
+            messagingSenderId: "880463477699"
+        };
         firebase.initializeApp(config);
         // Create a variable to reference the database
         app.database = firebase.database();
@@ -295,6 +320,30 @@ var app = {
         currentTime = moment().format("hh:mm:ss a");
         $(".time").html("<h4>" + currentTime + "</h4>");
     },
+
+    // listner for bookmarks
+    bookmarkListener: function(){
+        $("#bookmarks").text("");
+app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (bmSnapshot) {
+    bmSnapshot.forEach(function(child){
+                var key = child.key;
+                var value = child.val();
+                var ptag = $("<p>");
+                ptag.addClass("link");
+                var atag = $("<a></a>");
+                atag.attr("href", value);
+                atag.attr("target", "_blank");
+                atag.text(value);
+                ptag.append(atag);
+                $("#bookmarks").append(ptag)
+            });
+        }, function (errorObject) {
+            
+                  console.log("Errors handled: " + errorObject.code);
+            
+    });
+},
+
 
     collapseBtn1: function () {
         var colBtnToggle = $("#colBtn1").attr("data-exp");
