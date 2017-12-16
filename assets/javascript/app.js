@@ -5,7 +5,7 @@ $(document).ready(function () {
     app.initFireBase();
 
     var savedEmail = localStorage.getItem("savedEmail");
-    console.log(savedEmail);
+    
     if (savedEmail) {
 
         app.userlogin(savedEmail);
@@ -73,6 +73,23 @@ $(document).ready(function () {
         });
 
     });
+
+    // remove bookmarks when user clicks trash can icon in saved bookmarks panel
+    $(document).on("click", ".rmBookmark", function(e){
+        e.preventDefault()
+        var bookmark = $(this).attr("data-rm-url");
+        var key = $(this).attr("data-key");
+        
+         app.database.ref().child(cleanUnEmail + '/bookmarks/' + key).remove();
+        });
+
+
+    // listen for when a child is removed
+    app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_removed", function(snap) {
+    // get class based on the child's key and remove the element
+        $('#removebm'+snap.key).remove();  
+    });
+
     $("#colBtn1").click(function () {
         app.collapseBtn1();
     });
@@ -324,12 +341,13 @@ var app = {
     bookmarkListener: function () {
         $("#bookmarks").text("");
         app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_added", function (bmSnapshot) {
+            var refKey = bmSnapshot.key;
             bmSnapshot.forEach(function (child) {
                 var key = child.key;
                 var value = child.val();
                 var bookDiv = $("<div>");
                 bookDiv.addClass("well");
-                bookDiv.attr("id","removebm")
+                bookDiv.attr("id","removebm"+refKey);
                 var ptag = $("<p>");
                 ptag.addClass("bm-link");
                 var atag = $("<a></a>");
@@ -337,7 +355,7 @@ var app = {
                 atag.attr("target", "_blank");
                 atag.text(value);
                 ptag.append(atag);
-                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' remove-url="+ value +"><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
+                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' data-key="+ refKey +" data-rm-url="+ value +"><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
                 bookDiv.append(ptag);
                 bookDiv.append(removeBookmark);
                 $("#bookmarks").append(bookDiv);
