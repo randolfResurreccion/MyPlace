@@ -103,7 +103,6 @@ var app = {
             var existingEmail = name;
             cleanUnEmail = existingEmail.replace(".", ",");
 
-            console.log("test0");
             app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                 if (snapshot.val()) {
                     app.bookmarkListener();
