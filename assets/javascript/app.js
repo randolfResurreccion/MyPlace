@@ -114,7 +114,6 @@ var app = {
                     weather.call(userLoc);
                     events(userLoc);
                     trafficReports(userLoc);
-                    console.log("traffic: " + trafficReports(userLoc));
                     getNews();
                     app.updateTime();
                     setInterval(app.updateTime, 1000);
@@ -256,7 +255,7 @@ var app = {
             // hide the map div
             $("#map-div").attr('style', "display:none");
             $("#map-div").attr('data', "hide");
-            $("#map-panel-title").text("Map hidden, click to show");
+            $("#map-panel-title").text("Traffic information hidden, click to show");
 
             // if the map div is hidden
         } else {
