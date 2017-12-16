@@ -329,14 +329,17 @@ var app = {
                 var value = child.val();
                 var bookDiv = $("<div>");
                 bookDiv.addClass("well");
+                bookDiv.attr("id","removebm")
                 var ptag = $("<p>");
-                ptag.addClass("title-link");
+                ptag.addClass("bm-link");
                 var atag = $("<a></a>");
                 atag.attr("href", value);
                 atag.attr("target", "_blank");
                 atag.text(value);
                 ptag.append(atag);
+                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' remove-url="+ value +"><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
                 bookDiv.append(ptag);
+                bookDiv.append(removeBookmark);
                 $("#bookmarks").append(bookDiv);
             });
         }, function (errorObject) {

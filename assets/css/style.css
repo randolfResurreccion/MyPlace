@@ -1,3 +1,7 @@
+body {
+    background-image: url("https://i.pinimg.com/originals/23/40/fc/2340fc24618606b02c75e340cf19c995.jpg")
+}
+
 #weather-stats {
     max-height: 100%;
     max-width: 400px;
@@ -9,10 +13,6 @@
     background-image: url("../images/radar.jpg");
     max-width: 100%;
 }
-
-body {
-        background-image: url("https://i.pinimg.com/originals/23/40/fc/2340fc24618606b02c75e340cf19c995.jpg")
-    }
 
 .page-header {
     background-color: #333;
@@ -158,6 +158,16 @@ tr {
     font-size: 65px;
 }
 
+/* #removebm {
+    position: static;
+
+}
+.rmBookmark {
+    position: relative;
+    left:100%;
+    bottom:200%;
+} */
+
 /* styling for news panel content */
 
 a:link {
@@ -192,6 +202,7 @@ a:active {
         background-size: cover;
         margin-bottom: 10px;
     }
+}
 
 @media screen and (max-width: 680px) {
 
