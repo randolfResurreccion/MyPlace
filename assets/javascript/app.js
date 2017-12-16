@@ -180,6 +180,7 @@ var app = {
                         setInterval(app.updateTime, 1000);
                         $(".headerName").text("Welcome, " + userName);
                         $(".date").text(currentDate);
+                        $("#logout").attr("style", "display:inline");
 
                         $(".modal-outer-username").fadeOut(1000);
                         $(".panel").show(750);
@@ -193,7 +194,7 @@ var app = {
 
             }
         }
-        $("#logout").attr("style", "display:inline");
+        // $("#logout").attr("style", "display:inline");
     },
 
     // when a new user logs in
@@ -235,6 +236,7 @@ var app = {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
+            $("#logout").attr("style", "display:inline");
 
 
             // call weather, news and events to get data using API calls
@@ -260,7 +262,7 @@ var app = {
             app.bookmarkListener();
 
         }
-        $("#logout").attr("style", "display:inline");
+        // $("#logout").attr("style", "display:inline");
     },
 
     // hides the map

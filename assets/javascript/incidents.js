@@ -1,7 +1,7 @@
 function trafficReports(zipcode) {
     var APIkey = "B2YlPTpymmLZyHWhh9HZSdmdTgQkilzp";
     var zipcode = zipcode;
-    var queryZip = "http://www.mapquestapi.com/geocoding/v1/address?key=" + APIkey + "&location=" + zipcode;
+    var queryZip = "https://www.mapquestapi.com/geocoding/v1/address?key=" + APIkey + "&location=" + zipcode;
     $.ajax({
         url: queryZip,
         method: "get"
