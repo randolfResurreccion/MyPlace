@@ -25,7 +25,6 @@ function events(x) {
             // create html elements to display data
             var eventDiv = $("<div>");
             eventDiv.addClass('well well-lg');
-            // eventDiv.attr("id", "events")
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -37,7 +36,7 @@ function events(x) {
             pDate.addClass("event-date");
             var pBook = $("<p>");
             pBook.addClass("event-" + id);
-            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=article,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
+            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=event,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
 
             atag.text(shortTitle);
             ptag.append(atag);
@@ -62,8 +61,6 @@ function events(x) {
             // create html elements to display data
             var eventDiv = $("<div>");
             eventDiv.addClass('well well-lg');
-            // eventDiv.attr("id", "events")
-            // eventDiv.attr("id", "colDiv");
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -75,7 +72,11 @@ function events(x) {
             pDate.addClass("event-date");
             var pBook = $("<p>");   
             pBook.addClass("event-" + id);
+<<<<<<< HEAD
             var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=events,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
+=======
+            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=event,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
+>>>>>>> master
 
             atag.text(shortTitle);
             ptag.append(atag);
