@@ -5,7 +5,7 @@ $(document).ready(function () {
     app.initFireBase();
 
     var savedEmail = localStorage.getItem("savedEmail");
-    console.log(savedEmail);
+    
     if (savedEmail) {
 
         app.userlogin(savedEmail);
@@ -60,32 +60,49 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
-            
-                // set user data into firebase
-                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
-                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
-                    const userData = snapshot.val();
-                    if (!userData){
-                        userRef.push({
-                            bookmark_url: itemBookmarked[1]
-                        });
-                    }
+
+        // set user data into firebase
+        var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
+        app.database.ref().child(cleanUnEmail + '/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value", snapshot => {
+            const userData = snapshot.val();
+            if (!userData) {
+                userRef.push({
+                    bookmark_url: itemBookmarked[1]
                 });
-                
-});
-    $("#colBtn1").click(function() {
+            }
+        });
+
+    });
+
+    // remove bookmarks when user clicks trash can icon in saved bookmarks panel
+    $(document).on("click", ".rmBookmark", function(e){
+        e.preventDefault()
+        var bookmark = $(this).attr("data-rm-url");
+        var key = $(this).attr("data-key");
+        
+         app.database.ref().child(cleanUnEmail + '/bookmarks/' + key).remove();
+        });
+
+
+    // listen for when a child is removed
+    app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_removed", function(snap) {
+    // get class based on the child's key and remove the element
+        $('#removebm'+snap.key).remove();  
+    });
+
+    $("#colBtn1").click(function () {
         app.collapseBtn1();
     });
 
-    $("#colBtn2").click(function() {
+    $("#colBtn2").click(function () {
         app.collapseBtn2();
     });
 
     $("#logout").click(function () {
-        
+
         localStorage.clear();
         location.reload();
-      
+
     })
 });
 
@@ -129,9 +146,9 @@ var app = {
             });
         } else {
 
-        // get user input from form and store it in local variable
-        var unEmail = $("#usernameEmail").val().trim();
-        cleanUnEmail = unEmail.replace(".", ",");
+            // get user input from form and store it in local variable
+            var unEmail = $("#usernameEmail").val().trim();
+            cleanUnEmail = unEmail.replace(".", ",");
 
             localStorage.setItem("savedEmail", unEmail);
 
@@ -290,17 +307,6 @@ var app = {
 
     // initializes firebase
     initFireBase: function () {
-        // var config = {
-        //     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-        //     authDomain: "homepage-project-64ca7.firebaseapp.com",
-        //     databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-        //     projectId: "homepage-project-64ca7",
-        //     storageBucket: "homepage-project-64ca7.appspot.com",
-        //     messagingSenderId: "438523083006"
-        // };
-
-        // firebase.initializeApp(config);
-
         var config = {
             apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
             authDomain: "project-1-8deb1.firebaseapp.com",
@@ -321,63 +327,67 @@ var app = {
     },
 
     // listner for bookmarks
-    bookmarkListener: function(){
+    bookmarkListener: function () {
         $("#bookmarks").text("");
-app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (bmSnapshot) {
-    bmSnapshot.forEach(function(child){
+        app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_added", function (bmSnapshot) {
+            var refKey = bmSnapshot.key;
+            bmSnapshot.forEach(function (child) {
                 var key = child.key;
                 var value = child.val();
                 var bookDiv = $("<div>");
                 bookDiv.addClass("well");
+                bookDiv.attr("id","removebm"+refKey);
                 var ptag = $("<p>");
-                ptag.addClass("title-link");
+                ptag.addClass("bm-link");
                 var atag = $("<a></a>");
                 atag.attr("href", value);
                 atag.attr("target", "_blank");
                 atag.text(value);
                 ptag.append(atag);
+                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' data-key="+ refKey +" data-rm-url="+ value +"><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
                 bookDiv.append(ptag);
+                bookDiv.append(removeBookmark);
                 $("#bookmarks").append(bookDiv);
             });
         }, function (errorObject) {
-            
-                  console.log("Errors handled: " + errorObject.code);
-            
-    });
-},
+
+            console.log("Errors handled: " + errorObject.code);
+
+        });
+    },
 
 
     collapseBtn1: function () {
         var colBtnToggle = $("#colBtn1").attr("data-exp");
 
-            if(colBtnToggle == "no") {
-                $("#colBtn1").attr("data-exp", "yes");
-                $("#collapse1").toggle();
-                $("#colBtn1").text("Minimize");
-            }
-            else {
-                $("#colBtn1").attr("data-exp", "no");
-                $("#collapse1").toggle();
-                $("#colBtn1").text("Expand");
-            }
+        if (colBtnToggle == "no") {
+            $("#colBtn1").attr("data-exp", "yes");
+            $("#collapse1").toggle();
+            $("#colBtn1").text("Minimize");
+        }
+        else {
+            $("#colBtn1").attr("data-exp", "no");
+            $("#collapse1").toggle();
+            $("#colBtn1").text("Expand");
+        }
 
     },
 
     collapseBtn2: function () {
         var colBtnToggle = $("#colBtn2").attr("data-exp");
 
-            if(colBtnToggle == "no") {
-                $("#colBtn2").attr("data-exp", "yes");
-                $("#collapse2").toggle();
-                $("#colBtn2").text("Minimize");
-            }
-            else {
-                $("#colBtn2").attr("data-exp", "no");
-                $("#collapse2").toggle();
-                $("#colBtn2").text("Expand");
-            }
+        if (colBtnToggle == "no") {
+            $("#colBtn2").attr("data-exp", "yes");
+            $("#collapse2").toggle();
+            $("#colBtn2").text("Minimize");
+        }
+        else {
+            $("#colBtn2").attr("data-exp", "no");
+            $("#collapse2").toggle();
+            $("#colBtn2").text("Expand");
+        }
 
     }
-    
+
 }
 
