@@ -60,32 +60,32 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
-            
-                // set user data into firebase
-                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
-                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
-                    const userData = snapshot.val();
-                    if (!userData){
-                        userRef.push({
-                            bookmark_url: itemBookmarked[1]
-                        });
-                    }
+
+        // set user data into firebase
+        var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
+        app.database.ref().child(cleanUnEmail + '/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value", snapshot => {
+            const userData = snapshot.val();
+            if (!userData) {
+                userRef.push({
+                    bookmark_url: itemBookmarked[1]
                 });
-                
-});
-    $("#colBtn1").click(function() {
+            }
+        });
+
+    });
+    $("#colBtn1").click(function () {
         app.collapseBtn1();
     });
 
-    $("#colBtn2").click(function() {
+    $("#colBtn2").click(function () {
         app.collapseBtn2();
     });
 
     $("#logout").click(function () {
-        
+
         localStorage.clear();
         location.reload();
-      
+
     })
 });
 
@@ -130,9 +130,9 @@ var app = {
             });
         } else {
 
-        // get user input from form and store it in local variable
-        var unEmail = $("#usernameEmail").val().trim();
-        cleanUnEmail = unEmail.replace(".", ",");
+            // get user input from form and store it in local variable
+            var unEmail = $("#usernameEmail").val().trim();
+            cleanUnEmail = unEmail.replace(".", ",");
 
             localStorage.setItem("savedEmail", unEmail);
 
@@ -322,10 +322,10 @@ var app = {
     },
 
     // listner for bookmarks
-    bookmarkListener: function(){
+    bookmarkListener: function () {
         $("#bookmarks").text("");
-app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (bmSnapshot) {
-    bmSnapshot.forEach(function(child){
+        app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_added", function (bmSnapshot) {
+            bmSnapshot.forEach(function (child) {
                 var key = child.key;
                 var value = child.val();
                 var ptag = $("<p>");
@@ -338,44 +338,44 @@ app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (
                 $("#bookmarks").append(ptag)
             });
         }, function (errorObject) {
-            
-                  console.log("Errors handled: " + errorObject.code);
-            
-    });
-},
+
+            console.log("Errors handled: " + errorObject.code);
+
+        });
+    },
 
 
     collapseBtn1: function () {
         var colBtnToggle = $("#colBtn1").attr("data-exp");
 
-            if(colBtnToggle == "no") {
-                $("#colBtn1").attr("data-exp", "yes");
-                $("#collapse1").toggle();
-                $("#colBtn1").text("Minimize");
-            }
-            else {
-                $("#colBtn1").attr("data-exp", "no");
-                $("#collapse1").toggle();
-                $("#colBtn1").text("Expand");
-            }
+        if (colBtnToggle == "no") {
+            $("#colBtn1").attr("data-exp", "yes");
+            $("#collapse1").toggle();
+            $("#colBtn1").text("Minimize");
+        }
+        else {
+            $("#colBtn1").attr("data-exp", "no");
+            $("#collapse1").toggle();
+            $("#colBtn1").text("Expand");
+        }
 
     },
 
     collapseBtn2: function () {
         var colBtnToggle = $("#colBtn2").attr("data-exp");
 
-            if(colBtnToggle == "no") {
-                $("#colBtn2").attr("data-exp", "yes");
-                $("#collapse2").toggle();
-                $("#colBtn2").text("Minimize");
-            }
-            else {
-                $("#colBtn2").attr("data-exp", "no");
-                $("#collapse2").toggle();
-                $("#colBtn2").text("Expand");
-            }
+        if (colBtnToggle == "no") {
+            $("#colBtn2").attr("data-exp", "yes");
+            $("#collapse2").toggle();
+            $("#colBtn2").text("Minimize");
+        }
+        else {
+            $("#colBtn2").attr("data-exp", "no");
+            $("#collapse2").toggle();
+            $("#colBtn2").text("Expand");
+        }
 
     }
-    
+
 }
 
