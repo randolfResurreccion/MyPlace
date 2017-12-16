@@ -37,7 +37,7 @@ function events(x) {
             pDate.addClass("event-date");
             var pBook = $("<p>");
             pBook.addClass("event-" + id);
-            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=article,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
+            var linkBookmark = $("<a href='#' data-toggle='tooltip' title='Click to Bookmark' class='bookmark' data-url=event,"+url+"><i class='fa fa-bookmark' aria-hidden='true'></i></a>");
 
             atag.text(shortTitle);
             ptag.append(atag);
