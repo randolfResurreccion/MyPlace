@@ -307,17 +307,6 @@ var app = {
 
     // initializes firebase
     initFireBase: function () {
-        // var config = {
-        //     apiKey: "AIzaSyBAuahuC1FGJlDnYbTh_W4SNbyXxI4lDPs",
-        //     authDomain: "homepage-project-64ca7.firebaseapp.com",
-        //     databaseURL: "https://homepage-project-64ca7.firebaseio.com",
-        //     projectId: "homepage-project-64ca7",
-        //     storageBucket: "homepage-project-64ca7.appspot.com",
-        //     messagingSenderId: "438523083006"
-        // };
-
-        // firebase.initializeApp(config);
-
         var config = {
             apiKey: "AIzaSyCSI6pmvP1pjIdXadFW_b1RBIZCFrmTDI8",
             authDomain: "project-1-8deb1.firebaseapp.com",
