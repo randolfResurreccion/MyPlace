@@ -60,23 +60,6 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
-<<<<<<< HEAD
-        console.log(itemBookmarked);
-            
-                // set user data into firebase
-                var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
-                app.database.ref().child(cleanUnEmail+'/bookmarks').orderByChild("bookmark_url").equalTo(itemBookmarked[1]).once("value",snapshot => {
-                    const userData = snapshot.val();
-                    if (!userData){
-                        userRef.push({
-                            bookmark_url: itemBookmarked[1]
-                        });
-                    }
-                });        
-    });
-
-    $("#colBtn1").click(function() {
-=======
 
         // set user data into firebase
         var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
@@ -108,7 +91,6 @@ $(document).ready(function () {
     });
 
     $("#colBtn1").click(function () {
->>>>>>> master
         app.collapseBtn1();
     });
 
@@ -119,14 +101,9 @@ $(document).ready(function () {
     $("#logout").click(function () {
 
         localStorage.clear();
-<<<<<<< HEAD
-        location.reload(); 
-    });
-=======
         location.reload();
 
     })
->>>>>>> master
 });
 
 
@@ -413,12 +390,7 @@ var app = {
             $("#colBtn2").text("Expand");
         }
 
-<<<<<<< HEAD
-    },
-    
-=======
     }
 
->>>>>>> master
 }
 
