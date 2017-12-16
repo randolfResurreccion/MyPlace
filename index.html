@@ -36,6 +36,7 @@
     <script type="text/javascript" src="assets/javascript/events.js"></script>
     <script type="text/javascript" src="assets/javascript/news.js"></script>
     <script type="text/javascript" src="assets/javascript/traffic.js"></script>
+    <script type="text/javascript" src="assets/javascript/incidents.js"></script>
 
 </head>
 
@@ -91,11 +92,14 @@
             <div class="col-md-12 min-height-fix">
                 <div class="panel panel-default" id="map-panel-def">
                     <div class="panel-heading" id="map-panel-heading">
-                        <h3 class="panel-title" id="map-panel-title">Map hidden, click to show</h3>
+                        <h3 class="panel-title" id="map-panel-title">Traffic information hidden, click to show</h3>
                     </div>
                     <div class="panel-body" id="map-div" data="hide" style="display:none">
 
                         <div id="map"></div>
+                        <div id="incidents">
+                            <ul id="incidents-list"><strong>Traffic Incidents:</strong></ul>
+                        </div>
                     </div>
                 </div>
             </div>

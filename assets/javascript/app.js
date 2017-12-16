@@ -60,6 +60,7 @@ $(document).ready(function () {
     $(document).on("click", ".bookmark", function () {
         var dataUrl = $(this).attr("data-url");
         var itemBookmarked = dataUrl.split(",");
+        console.log(itemBookmarked);
             
                 // set user data into firebase
                 var userRef = app.database.ref().child(cleanUnEmail).child("bookmarks");
@@ -70,9 +71,9 @@ $(document).ready(function () {
                             bookmark_url: itemBookmarked[1]
                         });
                     }
-                });
-                
-});
+                });        
+    });
+
     $("#colBtn1").click(function() {
         app.collapseBtn1();
     });
@@ -84,9 +85,8 @@ $(document).ready(function () {
     $("#logout").click(function () {
         
         localStorage.clear();
-        location.reload();
-      
-    })
+        location.reload(); 
+    });
 });
 
 
@@ -113,6 +113,8 @@ var app = {
                     // call weather, news and events to get data using API calls
                     weather.call(userLoc);
                     events(userLoc);
+                    trafficReports(userLoc);
+                    console.log("traffic: " + trafficReports(userLoc));
                     getNews();
                     app.updateTime();
                     setInterval(app.updateTime, 1000);
@@ -157,6 +159,7 @@ var app = {
                         weather.call(userLoc);
                         events(userLoc);
                         getNews();
+                        trafficReports(userLoc);
                         app.updateTime();
                         setInterval(app.updateTime, 1000);
                         $(".headerName").text("Welcome, " + userName);
@@ -221,6 +224,7 @@ var app = {
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
+            trafficReports(loc);
             getNews();
             app.updateTime();
             setInterval(app.updateTime, 1000);
@@ -377,7 +381,13 @@ app.database.ref().child(cleanUnEmail+'/bookmarks').on("child_added", function (
                 $("#colBtn2").text("Expand");
             }
 
-    }
+    },
+
+    // trafficNoIncidents: function () {
+    //     if (trafficReports().val() === "") {
+    //         $("#incidents-list").append("<p>No incidents to report</p>");
+    //     }
+    // }
     
 }
 
