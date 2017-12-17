@@ -5,7 +5,7 @@ $(document).ready(function () {
     app.initFireBase();
 
     var savedEmail = localStorage.getItem("savedEmail");
-    
+
     if (savedEmail) {
 
         app.userlogin(savedEmail);
@@ -74,21 +74,18 @@ $(document).ready(function () {
 
     });
 
+
+
     // remove bookmarks when user clicks trash can icon in saved bookmarks panel
-    $(document).on("click", ".rmBookmark", function(e){
+    $(document).on("click", ".rmBookmark", function (e) {
         e.preventDefault()
         var bookmark = $(this).attr("data-rm-url");
         var key = $(this).attr("data-key");
-        
-         app.database.ref().child(cleanUnEmail + '/bookmarks/' + key).remove();
-        });
 
-
-    // listen for when a child is removed
-    app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_removed", function(snap) {
-    // get class based on the child's key and remove the element
-        $('#removebm'+snap.key).remove();  
+        app.database.ref().child(cleanUnEmail + '/bookmarks/' + key).remove();
     });
+
+
 
     $("#colBtn1").click(function () {
         app.collapseBtn1();
@@ -123,6 +120,7 @@ var app = {
             app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                 if (snapshot.val()) {
                     app.bookmarkListener();
+                    app.rmBookmarkListener();
                     var userName = snapshot.val().name;
                     var userLoc = snapshot.val().loc;
                     var currentDate = moment().format("MMMM DD, YYYY");
@@ -166,6 +164,7 @@ var app = {
                 app.database.ref().child(cleanUnEmail).once("value").then(function (snapshot) {
                     if (snapshot.val()) {
                         app.bookmarkListener();
+                        app.rmBookmarkListener();
                         var userName = snapshot.val().name;
                         var userLoc = snapshot.val().loc;
                         var currentDate = moment().format("MMMM DD, YYYY");
@@ -255,6 +254,7 @@ var app = {
                 loc: loc
             });
             app.bookmarkListener();
+            app.rmBookmarkListener();
 
         }
         $("#logout").attr("style", "display:inline");
@@ -336,7 +336,7 @@ var app = {
                 var value = child.val();
                 var bookDiv = $("<div>");
                 bookDiv.addClass("well");
-                bookDiv.attr("id","removebm"+refKey);
+                bookDiv.attr("id", "removebm" + refKey);
                 var ptag = $("<p>");
                 ptag.addClass("bm-link");
                 var atag = $("<a></a>");
@@ -344,7 +344,7 @@ var app = {
                 atag.attr("target", "_blank");
                 atag.text(value);
                 ptag.append(atag);
-                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' data-key="+ refKey +" data-rm-url="+ value +"><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
+                var removeBookmark = $("<a href='#' data-toggle='tooltip' title='Click to remove bookmark' class='rmBookmark' data-key=" + refKey + " data-rm-url=" + value + "><i class='fa fa-trash-o' aria-hidden='true'></i></a>");
                 bookDiv.append(ptag);
                 bookDiv.append(removeBookmark);
                 $("#bookmarks").append(bookDiv);
@@ -356,6 +356,13 @@ var app = {
         });
     },
 
+    rmBookmarkListener: function () {
+        // listen for when a child is removed
+        app.database.ref().child(cleanUnEmail + '/bookmarks').on("child_removed", function (snap) {
+            // get class based on the child's key and remove the element
+            $('#removebm' + snap.key).remove();
+        });
+    },
 
     collapseBtn1: function () {
         var colBtnToggle = $("#colBtn1").attr("data-exp");
