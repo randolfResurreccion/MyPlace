@@ -193,7 +193,6 @@ var app = {
 
             }
         }
-        // $("#logout").attr("style", "display:inline");
     },
 
     // when a new user logs in
