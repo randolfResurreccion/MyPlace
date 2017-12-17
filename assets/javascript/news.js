@@ -10,7 +10,6 @@ function getNews() {
         url: queryUrl,
         method: "GET"
     }).done(function (response) {
-        console.log(response);
         var articles = response.articles;
 
         // Loop through and provide the one article from each source
