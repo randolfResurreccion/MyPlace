@@ -10,7 +10,6 @@ function events(x) {
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-        console.log(response);
         var events = response.events;
 
         //pick top 5 events from response to display to user

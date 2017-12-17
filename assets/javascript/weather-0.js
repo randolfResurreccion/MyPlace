@@ -23,7 +23,6 @@ weather = {
             // get wind info and convert 
             let wind = Math.round(response.wind.speed * 2.2369);
             let deg = response.wind.deg;
-            console.log(response);
 
             // gets other weather data
             let main = response.weather[0].main;
@@ -31,7 +30,6 @@ weather = {
             let hpa = response.main.pressure;
 
             var lat = response.coord.lat;
-            console.log(lat);
             let latStore = $("<button>");
             latStore.val(lat);
             latStore.attr("id", "lat-store");
@@ -39,7 +37,6 @@ weather = {
             $("html").append(latStore);
             
             var lon = response.coord.lon;
-            console.log(lon);
             let lonStore = $("<button>");
             lonStore.val(lon);
             lonStore.attr("id", "lon-store");
