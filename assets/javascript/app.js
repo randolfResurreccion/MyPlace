@@ -128,6 +128,7 @@ var app = {
                     // call weather, news and events to get data using API calls
                     weather.call(userLoc);
                     events(userLoc);
+                    trafficReports(userLoc);
                     getNews();
                     app.updateTime();
                     setInterval(app.updateTime, 1000);
@@ -173,10 +174,12 @@ var app = {
                         weather.call(userLoc);
                         events(userLoc);
                         getNews();
+                        trafficReports(userLoc);
                         app.updateTime();
                         setInterval(app.updateTime, 1000);
                         $(".headerName").text("Welcome, " + userName);
                         $(".date").text(currentDate);
+                        $("#logout").attr("style", "display:inline");
 
                         $(".modal-outer-username").fadeOut(1000);
                         $(".panel").show(750);
@@ -190,7 +193,7 @@ var app = {
 
             }
         }
-        $("#logout").attr("style", "display:inline");
+        // $("#logout").attr("style", "display:inline");
     },
 
     // when a new user logs in
@@ -232,11 +235,13 @@ var app = {
 
             $(".headerName").text("Welcome, " + name);
             $(".date").text(currentDate);
+            $("#logout").attr("style", "display:inline");
 
 
             // call weather, news and events to get data using API calls
             weather.call(loc);
             events(loc);
+            trafficReports(loc);
             getNews();
             app.updateTime();
             setInterval(app.updateTime, 1000);
@@ -257,7 +262,7 @@ var app = {
             app.rmBookmarkListener();
 
         }
-        $("#logout").attr("style", "display:inline");
+        // $("#logout").attr("style", "display:inline");
     },
 
     // hides the map
@@ -269,7 +274,7 @@ var app = {
             // hide the map div
             $("#map-div").attr('style', "display:none");
             $("#map-div").attr('data', "hide");
-            $("#map-panel-title").text("Map hidden, click to show");
+            $("#map-panel-title").text("Traffic information hidden, click to show");
 
             // if the map div is hidden
         } else {

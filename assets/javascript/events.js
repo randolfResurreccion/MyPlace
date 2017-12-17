@@ -25,7 +25,6 @@ function events(x) {
             // create html elements to display data
             var eventDiv = $("<div>");
             eventDiv.addClass('well well-lg');
-            // eventDiv.attr("id", "events")
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
@@ -62,8 +61,6 @@ function events(x) {
             // create html elements to display data
             var eventDiv = $("<div>");
             eventDiv.addClass('well well-lg');
-            // eventDiv.attr("id", "events")
-            // eventDiv.attr("id", "colDiv");
             var ptag = $("<p>");
             ptag.addClass("title-link");
             var atag = $("<a></a>");
