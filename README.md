@@ -20,4 +20,5 @@ Customized Personal Homepage.
 3. [openweathermap](https://openweathermap.org/current)
 4. [mapQuest-GeoCoding API](https://developer.mapquest.com/documentation/geocoding-api/)
 5. [mapQuest-Traffic API](https://developer.mapquest.com/documentation/traffic-api/)
+6. [GoogleMaps](https://maps.googleapis.com/maps/)
 
