@@ -1,6 +1,6 @@
 # MyPlace
 Customized Personal Homepage. 
-  https://randolfresurreccion.github.io/MyPlace/
+  [MyPlace](https://randolfresurreccion.github.io/MyPlace/)
   
 # Features:
 1. This app allows registered user to check for trending news, local events, current weather and traffic updates all at one place based on    user location.
